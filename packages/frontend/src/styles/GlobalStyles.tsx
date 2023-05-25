@@ -1,6 +1,6 @@
 import { Global } from '@emotion/react'
 import 'nprogress/nprogress.css'
-import tw, { css, GlobalStyles as BaseStyles } from 'twin.macro'
+import tw, { GlobalStyles as BaseStyles, css } from 'twin.macro'
 
 const customStyles = css`
   html {
@@ -23,7 +23,20 @@ const customStyles = css`
     }
     .peg,
     .spinner {
-      ${tw`hidden!`}
+      ${tw`!hidden`}
+    }
+  }
+
+  /* Blink Animation */
+  @keyframes blink {
+    0% {
+      opacity: 1;
+    }
+    50% {
+      opacity: 0;
+    }
+    100% {
+      opacity: 1;
     }
   }
 `

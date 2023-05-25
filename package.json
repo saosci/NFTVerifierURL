@@ -5,10 +5,10 @@
   "homepage": "https://inkathon.xyz",
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/scio-labs/inkathon"
+    "url": "git+https://github.com/saosci/NFTVerifierURL"
   },
   "bugs": {
-    "url": "https://github.com/scio-labs/inkathon/issues"
+    "url": "https://github.com/saosci/NFTVerifierURL"
   },
   "private": true,
   "workspaces": [

@@ -2,7 +2,7 @@ import { env } from '@config/environment'
 import { SubstrateDeployment } from '@scio-labs/use-inkathon'
 
 export enum ContractIds {
-  Greeter = 'greeter',
+  Greeter = 'launchpad_psp34_nft_standard',
 }
 
 export const getDeployments = async (): Promise<SubstrateDeployment[]> => {

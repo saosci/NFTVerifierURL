@@ -67,7 +67,7 @@ export const ConnectButton: FC<ConnectButtonProps> = () => {
           py={6}
           fontWeight="bold"
           rounded="2xl"
-          colorScheme="purple"
+          colorScheme="blue"
         >
           Connect Wallet
         </MenuButton>
@@ -147,13 +147,7 @@ export const ConnectButton: FC<ConnectButtonProps> = () => {
         </MenuButton>
       </HStack>
 
-      <MenuList
-        bgColor="blackAlpha.900"
-        borderColor="whiteAlpha.300"
-        rounded="2xl"
-        maxHeight="40vh"
-        overflow="scroll"
-      >
+      <MenuList bgColor="blackAlpha.900" borderColor="whiteAlpha.300" rounded="2xl" overflow="auto">
         {/* Supported Chains */}
         {supportedChains.map((chain) => (
           <MenuItem
@@ -163,7 +157,7 @@ export const ConnectButton: FC<ConnectButtonProps> = () => {
               await switchActiveChain?.(chain)
               toast.success(`Switched to ${chain.name}`)
             }}
-            tw="bg-transparent hocus:bg-gray-800"
+            tw="cursor-default bg-transparent hocus:bg-gray-800"
           >
             <VStack align="start" spacing={0}>
               <HStack>
@@ -186,7 +180,7 @@ export const ConnectButton: FC<ConnectButtonProps> = () => {
               onClick={() => {
                 setActiveAccount?.(acc)
               }}
-              tw="bg-transparent hocus:bg-gray-800"
+              tw="cursor-default bg-transparent hocus:bg-gray-800"
             >
               <VStack align="start" spacing={0}>
                 <HStack>
