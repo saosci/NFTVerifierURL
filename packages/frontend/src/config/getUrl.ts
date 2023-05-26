@@ -3,7 +3,7 @@
  */
 export const getURL = () => {
   let url =
-    process?.env?.NEXT_PUBLIC_URL ?? process?.env?.NEXT_PUBLIC_VERCEL_URL ?? 'http://localhost:3000'
+    process?.env?.NEXT_PUBLIC_URL ?? process?.env?.NEXT_PUBLIC_VERCEL_URL ?? 'http://www.op2.app'
 
   // Include `https://` when not localhost
   url = url.includes('http') ? url : `https://${url}`

@@ -8,13 +8,10 @@ const StyledIconLink = styled(Link)(() => [
 ])
 
 export const HomePageTitle: FC = () => {
-  const title = 'ink!athon'
+  const title = 'Office Party'
   const desc = 'Office Party Presents'
   const desck = 'Aleph Zero NFT verification bot'
   const discord = 'https://discord.gg/HkvPV3gAcy'
-  const deployHref = 'https://github.com/scio-labs/inkathon#deployment'
-  const sponsorHref = 'mailto:hello@scio.xyz'
-  const telegramHref = 'https://t.me/inkathon'
 
   return (
     <>
