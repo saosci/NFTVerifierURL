@@ -31,14 +31,14 @@ function MyApp({ Component, pageProps }: AppProps) {
       <DefaultSeo
         dangerouslySetAllPagesToNoFollow={!env.isProduction}
         dangerouslySetAllPagesToNoIndex={!env.isProduction}
-        defaultTitle="ink!athon" // TODO
-        titleTemplate="%s | ink!athon" // TODO
-        description="Substrate-based Smart Contract & DApp Development Boilerplate" // TODO
+        defaultTitle="Dappy" // TODO
+        titleTemplate="%s | Dappy" // TODO
+        description="NFT Verification" // TODO
         openGraph={{
           type: 'website',
           locale: 'en',
           url: env.url,
-          site_name: 'ink!athon', // TODO
+          site_name: 'Dappy', // TODO
           images: [
             {
               url: `${env.url}/images/cover.jpg`, // TODO
@@ -48,7 +48,7 @@ function MyApp({ Component, pageProps }: AppProps) {
           ],
         }}
         twitter={{
-          handle: '@scio_xyz', // TODO
+          handle: '@OfficePartyNFT', // TODO
         }}
       />
 
@@ -64,7 +64,7 @@ function MyApp({ Component, pageProps }: AppProps) {
       </Head>
 
       <UseInkathonProvider
-        appName="ink!athon" // TODO
+        appName="Dappy" // TODO
         connectOnInit={false}
         defaultChain={env.defaultChain}
         deployments={getDeployments()}
