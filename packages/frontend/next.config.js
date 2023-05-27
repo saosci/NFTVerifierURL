@@ -5,7 +5,11 @@
 /**
  * @type {import('next').NextConfig}
  **/
-let nextConfig = {}
+let nextConfig = {
+  images: {
+    unoptimized: true,
+  },
+}
 
 const withTwin = require('./withTwin.js')
 nextConfig = withTwin(nextConfig)

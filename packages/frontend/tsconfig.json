@@ -20,7 +20,7 @@
     }
   },
   "references": [{ "path": "../contracts" }],
-  "include": ["next-env.d.ts", "**/*.js", "**/*.ts", "**/*.tsx", "**/*.json"],
+  "include": ["next-env.d.ts", "**/*.js", "**/*.ts", "**/*.tsx", "**/*.json", "public/_redirects"],
   "exclude": ["node_modules", ".next", "out"],
   "types": ["src/types"]
 }
