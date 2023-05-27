@@ -15,7 +15,6 @@ export const BalanceContractInteraction: FC = () => {
   const router = useRouter()
   const { userId } = router.query
   console.log('userId:', userId) // Log the userId
-
   const { api, activeAccount } = useInkathon()
   const { contract, address: contractAddress } = useRegisteredContract(ContractIds.Greeter)
   const [balance, setBalance] = useState<number>()

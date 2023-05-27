@@ -1,8 +1,8 @@
 {
-  "name": "@inkathon/monorepo",
-  "description": "Full-Stack DApp Boilerplate for Substrate-based networks and ink! Smart Contracts",
+  "name": "@Dappy",
+  "description": "NFT Verification Bot",
   "version": "0.0.1",
-  "homepage": "https://inkathon.xyz",
+  "homepage": "https://op2.app",
   "repository": {
     "type": "git",
     "url": "git+https://github.com/saosci/NFTVerifierURL"
