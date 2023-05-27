@@ -1,7 +1,7 @@
 {
-  "name": "@inkathon/contracts",
+  "name": "@Dappy/contracts",
   "version": "0.0.1",
-  "homepage": "https://inkathon.xyz",
+  "homepage": "https://www.op2.app",
   "type": "module",
   "scripts": {
     "test": "./test-all.sh",

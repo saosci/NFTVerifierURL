@@ -14,6 +14,8 @@ import 'twin.macro'
 export const BalanceContractInteraction: FC = () => {
   const router = useRouter()
   const { userId } = router.query
+  console.log('userId:', userId) // Log the userId
+
   const { api, activeAccount } = useInkathon()
   const { contract, address: contractAddress } = useRegisteredContract(ContractIds.Greeter)
   const [balance, setBalance] = useState<number>()
@@ -23,7 +25,10 @@ export const BalanceContractInteraction: FC = () => {
 
   // Fetch Balance and Tokens
   const fetchBalanceAndTokens = async () => {
+    console.log('fetchBalanceAndTokens called') // Log when the function is called
+
     if (!contract || !api || !activeAccount) {
+      console.log('Missing contract, api, or activeAccount') // Log if any of these are missing
       return
     }
 
@@ -58,9 +63,11 @@ export const BalanceContractInteraction: FC = () => {
 
       // After determining the verification status...
       const verificationStatus = balanceOutput && balanceOutput > 0 ? 'VERIFIED' : 'ERROR'
+      console.log('verificationStatus:', verificationStatus) // Log the verificationStatus
 
       // Send a POST request to your backend server
       if (userId) {
+        console.log('Sending POST request to backend') // Log before sending the request
         fetch('https://api.op2.app/verify', {
           method: 'POST',
           headers: {
@@ -71,7 +78,10 @@ export const BalanceContractInteraction: FC = () => {
             verificationStatus: verificationStatus,
           }),
         })
-          .then((response) => response.text())
+          .then((response) => {
+            console.log('POST request response:', response) // Log the response
+            return response.text()
+          })
           .catch((error) => console.error('Error:', error))
       }
 

@@ -6,8 +6,6 @@ import { useRouter } from 'next/router'
 import { useEffect } from 'react'
 import 'twin.macro'
 import type { NextPage } from 'next'
-import { useInkathon } from '@scio-labs/use-inkathon'
-import { toast } from 'react-hot-toast'
 
 const VerifyPage: NextPage = () => {
   const router = useRouter()
