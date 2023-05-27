@@ -5,8 +5,11 @@ import { ConnectButton } from '@components/web3/ConnectButton'
 import { useRouter } from 'next/router'
 import { useEffect } from 'react'
 import 'twin.macro'
+import type { NextPage } from 'next'
+import { useInkathon } from '@scio-labs/use-inkathon'
+import { toast } from 'react-hot-toast'
 
-export default function VerifyPage() {
+const VerifyPage: NextPage = () => {
   const router = useRouter()
   const { userId } = router.query
 
@@ -30,3 +33,5 @@ export default function VerifyPage() {
     </CenterBody>
   )
 }
+
+export default VerifyPage

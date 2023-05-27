@@ -61,7 +61,7 @@ export const BalanceContractInteraction: FC = () => {
 
       // Send a POST request to your backend server
       if (userId) {
-        fetch('http://www.op2.app:443/verify', {
+        fetch('https://api.op2.app/verify', {
           method: 'POST',
           headers: {
             'Content-Type': 'application/json',
