@@ -1,6 +1,6 @@
 # NFT Verification for Aleph Zero, built with the ink!athon – DApp Boilerplate for Substrate & ink!
 
-<img src="packages/frontend/public/images/cover.png" width="800" height="auto" alt="Cover Image" />
+<img src="packages/frontend/public/images/cover.jpg" width="800" height="auto" alt="Cover Image" />
 
 ---
 
