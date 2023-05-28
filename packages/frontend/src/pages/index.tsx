@@ -22,12 +22,6 @@ const HomePage: NextPage = () => {
         {/* Title */}
         <HomePageTitle />
 
-        {/* Greeter Read/Write Contract Interactions */}
-        <BalanceContractInteraction />
-
-        {/* Connect Wallet Button */}
-        <ConnectButton />
-
         <div tw="mt-10 flex w-full flex-wrap items-start justify-center gap-4"></div>
       </CenterBody>
     </>
