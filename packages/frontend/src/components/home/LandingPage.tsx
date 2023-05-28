@@ -11,21 +11,21 @@ const StyledIconLink = styled(Link)(() => [
 
 export const LandingPage: FC = () => {
   const title = 'Office Party'
-  const desc = 'Office Party Presents'
-  const desck = 'Aleph Zero NFT verification bot'
   const discord = 'https://discord.gg/HkvPV3gAcy'
 
   return (
     <>
       <div tw="flex flex-col items-center text-center font-mono">
+        <h1 tw="font-black text-[2.5rem]">{title}</h1>
+      </div>
+      <div>
         <Link
           href={discord}
           target="_blank"
           className="group"
           tw="flex cursor-pointer items-center gap-4 rounded-3xl py-1.5 px-3.5 transition-all hover:bg-gray-900"
         >
-          <Image src={MrMoneybags} priority width={60} alt="Mr. Moneybags" />
-          <h1 tw="font-black text-[2.5rem]">{title}</h1>
+          <Image src={MrMoneybags} priority width={512} alt="Mr. Moneybags" />
         </Link>
       </div>
     </>
