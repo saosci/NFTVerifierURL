@@ -14,7 +14,7 @@ const StyledIconLink = styled(Link)(() => [
 export const LandingPage: FC = () => {
   const title = 'Office Party'
   const discord = 'https://discord.gg/HkvPV3gAcy'
-  const memoire = 'Ever since Mr. MoneyBags dissapeared'
+  const memoire = 'Ever since Mr. MoneyBags disappeared'
   const money = 'the party has not stopped'
   const [confetti, setConfetti] = useState(false)
 
