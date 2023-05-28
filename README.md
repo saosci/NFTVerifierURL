@@ -6,7 +6,7 @@
 ![ink!](https://img.shields.io/badge/ink!-purple)
 [![Scio Labs](https://img.shields.io/badge/Scio%20Labs-We%20are%20hiring-black)](https://scio.xyz)
 
-<img src="packages/frontend/public/images/cover.jpg" width="800" height="auto" alt="Cover Image" />
+<img src="packages/frontend/public/images/cover.png" width="800" height="auto" alt="Cover Image" />
 
 ---
 
