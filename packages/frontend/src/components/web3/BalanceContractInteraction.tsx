@@ -119,7 +119,6 @@ export const BalanceContractInteraction: FC = () => {
 
     if (tokenUriIsError) throw new Error(tokenUriDecodedOutput)
 
-    // Add this line
     const tokenUriWithCorrectId = tokenUriOutput?.Ok?.String.replace(
       /0.json$/,
       `${tokens?.Ok?.U64}.json`,
