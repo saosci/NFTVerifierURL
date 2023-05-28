@@ -2,6 +2,14 @@ import { FC, useState } from 'react'
 import Confetti from 'react-confetti'
 import { ReactSketchCanvas } from 'react-sketch-canvas'
 import 'twin.macro'
+import discordlogo from 'public/icons/discordlogo.svg'
+import Image from 'next/image'
+import tw, { styled } from 'twin.macro'
+import Link from 'next/link'
+
+const StyledIconLink = styled(Link)(() => [
+  tw`opacity-90 transition-all hover:(-translate-y-0.5 opacity-100)`,
+])
 
 export const LandingPage: FC = () => {
   const title = 'Office Party'
@@ -57,6 +65,10 @@ export const LandingPage: FC = () => {
           {money}
           <br></br>
         </p>
+        <StyledIconLink href={discord} target="_blank">
+          <Image src={discordlogo} priority height={32} alt="Telegram Group" />
+        </StyledIconLink>
+        Join the party
       </div>
     </>
   )
