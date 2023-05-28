@@ -1,32 +1,62 @@
-import Link from 'next/link'
-import MrMoneybags from 'public/brand/MrMoneybags.png'
-import Image from 'next/image'
-import { FC } from 'react'
+import { FC, useState } from 'react'
+import Confetti from 'react-confetti'
+import { ReactSketchCanvas } from 'react-sketch-canvas'
 import 'twin.macro'
-import tw, { styled } from 'twin.macro'
-
-const StyledIconLink = styled(Link)(() => [
-  tw`opacity-90 transition-all hover:(-translate-y-0.5 opacity-100)`,
-])
 
 export const LandingPage: FC = () => {
   const title = 'Office Party'
   const discord = 'https://discord.gg/HkvPV3gAcy'
+  const memoire = 'Ever since Mr. MoneyBags dissapeared'
+  const money = 'the party has not stopped'
+  const [confetti, setConfetti] = useState(false)
+
+  const handleMouseEnter = () => {
+    setConfetti(true)
+  }
+
+  const styles = {
+    border: '0rem solid #9c9c9c',
+    borderRadius: '0rem',
+  }
+
+  const Canvas = () => {
+    return (
+      <ReactSketchCanvas
+        style={styles}
+        width="512px"
+        height="512px"
+        backgroundImage="none"
+        svgStyle={{
+          backgroundImage: "url('https://i.imgur.com/iOKqtrq.png')",
+          backgroundSize: 'cover',
+          backgroundPosition: 'center',
+        }}
+        strokeWidth={4}
+        strokeColor="red"
+      />
+    )
+  }
 
   return (
     <>
+      {confetti && (
+        <Confetti
+          width={window.innerWidth}
+          height={window.innerHeight}
+          style={{ position: 'fixed' }}
+        />
+      )}
       <div tw="flex flex-col items-center text-center font-mono">
         <h1 tw="font-black text-[2.5rem]">{title}</h1>
       </div>
-      <div>
-        <Link
-          href={discord}
-          target="_blank"
-          className="group"
-          tw="flex cursor-pointer items-center gap-4 rounded-3xl py-1.5 px-3.5 transition-all hover:bg-gray-900"
-        >
-          <Image src={MrMoneybags} priority width={512} alt="Mr. Moneybags" />
-        </Link>
+      <div tw="flex flex-col items-center text-center font-mono" onMouseEnter={handleMouseEnter}>
+        <Canvas />
+        <p tw="mt-4 mb-6 text-gray-400">
+          {memoire}
+          <br></br>
+          {money}
+          <br></br>
+        </p>
       </div>
     </>
   )
