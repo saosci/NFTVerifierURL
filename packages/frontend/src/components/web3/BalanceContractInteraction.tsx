@@ -21,6 +21,8 @@ export const BalanceContractInteraction: FC = () => {
   const [fetchIsLoading, setFetchIsLoading] = useState<boolean>()
   const [tokens, setTokens] = useState<any>()
   const [tokenUri, setTokenUri] = useState<string>()
+  // Extract the platform from the URL
+  const { platform } = router.query
 
   // Fetch Balance and Tokens
   const fetchBalanceAndTokens = async () => {
@@ -67,13 +69,13 @@ export const BalanceContractInteraction: FC = () => {
       // Send a POST request to your backend server
       if (userId) {
         console.log('Sending POST request to backend') // Log before sending the request
-        fetch(`https://api.op2.app/verify`, {
+        fetch(`https://api.op2.app/verify/${platform}`, {
           method: 'POST',
           headers: {
             'Content-Type': 'application/json',
           },
           body: JSON.stringify({
-            userId: userId, // The Discord user ID from the URL
+            userId: userId, // The Discord or Telegram user ID from the URL
             verificationStatus: verificationStatus,
           }),
         })
