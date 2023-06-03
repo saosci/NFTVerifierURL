@@ -67,13 +67,13 @@ export const BalanceContractInteraction: FC = () => {
       // Send a POST request to your backend server
       if (userId) {
         console.log('Sending POST request to backend') // Log before sending the request
-        fetch('https://api.op2.app/verify', {
+        fetch(`https://api.op2.app/verify`, {
           method: 'POST',
           headers: {
             'Content-Type': 'application/json',
           },
           body: JSON.stringify({
-            discordId: userId, // The Discord user ID from the URL
+            userId: userId, // The Discord user ID from the URL
             verificationStatus: verificationStatus,
           }),
         })
