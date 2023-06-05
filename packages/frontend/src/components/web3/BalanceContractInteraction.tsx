@@ -74,6 +74,7 @@ export const BalanceContractInteraction: FC = () => {
           headers: {
             'Content-Type': 'application/json',
           },
+          credentials: 'include', // Include cookies with the request
           body: JSON.stringify({
             userId: userId, // The Discord or Telegram user ID from the URL
             verificationStatus: verificationStatus,
