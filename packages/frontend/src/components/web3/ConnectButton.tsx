@@ -53,6 +53,8 @@ export const ConnectButton: FC<ConnectButtonProps> = () => {
   const [browserWallets] = useState(
     allSubstrateWallets.filter((w) => w.platforms.includes(SubstrateWalletPlatform.Browser)),
   )
+  const [installedWallets] = useState(allSubstrateWallets)
+
   const isSSR = useIsSSR()
 
   // Connect Button
@@ -76,7 +78,7 @@ export const ConnectButton: FC<ConnectButtonProps> = () => {
           {/* Installed Wallets */}
           {!isSSR &&
             !activeAccount &&
-            browserWallets.map((w) =>
+            installedWallets.map((w) =>
               isWalletInstalled(w) ? (
                 <MenuItem
                   key={w.id}
