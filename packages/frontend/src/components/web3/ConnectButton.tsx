@@ -50,11 +50,12 @@ export const ConnectButton: FC<ConnectButtonProps> = () => {
   const [supportedChains] = useState(
     env.supportedChains.map((networkId) => getSubstrateChain(networkId) as SubstrateChain),
   )
-  const [browserWallets] = useState(
-    allSubstrateWallets.filter((w) => w.platforms.includes(SubstrateWalletPlatform.Browser)),
-  )
-  const [androidWallets] = useState(
-    allSubstrateWallets.filter((w) => w.platforms.includes(SubstrateWalletPlatform.Android)),
+  const [allWallets] = useState(
+    allSubstrateWallets.filter(
+      (w) =>
+        w.platforms.includes(SubstrateWalletPlatform.Browser) &&
+        w.platforms.includes(SubstrateWalletPlatform.Android),
+    ),
   )
 
   const isSSR = useIsSSR()
@@ -80,7 +81,7 @@ export const ConnectButton: FC<ConnectButtonProps> = () => {
           {/* Installed Wallets */}
           {!isSSR &&
             !activeAccount &&
-            browserWallets.map((w) =>
+            allWallets.map((w) =>
               isWalletInstalled(w) ? (
                 <MenuItem
                   key={w.id}
