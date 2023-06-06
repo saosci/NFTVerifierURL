@@ -51,11 +51,7 @@ export const ConnectButton: FC<ConnectButtonProps> = () => {
     env.supportedChains.map((networkId) => getSubstrateChain(networkId) as SubstrateChain),
   )
   const [allWallets] = useState(
-    allSubstrateWallets.filter(
-      (w) =>
-        w.platforms.includes(SubstrateWalletPlatform.Browser) &&
-        w.platforms.includes(SubstrateWalletPlatform.Android),
-    ),
+    allSubstrateWallets.filter((w) => w.platforms.includes(SubstrateWalletPlatform.Browser)),
   )
 
   const isSSR = useIsSSR()
