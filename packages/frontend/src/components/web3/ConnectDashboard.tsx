@@ -199,6 +199,7 @@ export const ConnectDashboard: FC<ConnectDashboardProps> = ({ adminWalletAddress
         >
           <form onSubmit={handleSubmit(onSubmit)}>
             <FormControl
+              textColor={black}
               id="alreadyVerifiedDiscord"
               isRequired
               isInvalid={!!errors.alreadyVerifiedDiscord}
@@ -210,13 +211,25 @@ export const ConnectDashboard: FC<ConnectDashboardProps> = ({ adminWalletAddress
               </FormErrorMessage>
             </FormControl>
 
-            <FormControl id="testing1" isRequired isInvalid={!!errors.testing1} mt={4}>
+            <FormControl
+              textColor={black}
+              id="testing1"
+              isRequired
+              isInvalid={!!errors.testing1}
+              mt={4}
+            >
               <FormLabel>Testing 1 field:</FormLabel>
               <Input {...register('testing1')} />
               <FormErrorMessage>{errors.testing1 && 'This field is required'}</FormErrorMessage>
             </FormControl>
 
-            <FormControl id="testing2" isRequired isInvalid={!!errors.testing2} mt={4}>
+            <FormControl
+              textColor={black}
+              id="testing2"
+              isRequired
+              isInvalid={!!errors.testing2}
+              mt={4}
+            >
               <FormLabel>Testing 2 field:</FormLabel>
               <Input {...register('testing2')} />
               <FormErrorMessage>{errors.testing2 && 'This field is required'}</FormErrorMessage>
