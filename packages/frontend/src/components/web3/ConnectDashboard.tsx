@@ -89,16 +89,8 @@ export const ConnectDashboard: FC<ConnectDashboardProps> = ({ adminWalletAddress
 
   interface FormData {
     alreadyVerifiedDiscord: string
-    field1: string
-    field2: string
-    field3: string
-    field4: string
-    field5: string
-    field6: string
-    field7: string
-    field8: string
-    field9: string
-    field10: string
+    testing1: string
+    testing2: string
   }
 
   const {
@@ -106,7 +98,6 @@ export const ConnectDashboard: FC<ConnectDashboardProps> = ({ adminWalletAddress
     handleSubmit,
     formState: { errors },
   } = useForm<FormData>()
-  const [alreadyVerifiedDiscord, setAlreadyVerifiedDiscord] = useState('')
 
   const onSubmit = async (data: FormData) => {
     try {
@@ -115,15 +106,19 @@ export const ConnectDashboard: FC<ConnectDashboardProps> = ({ adminWalletAddress
         headers: {
           'Content-Type': 'application/json',
         },
-        body: JSON.stringify({ alreadyVerifiedDiscord }),
+        body: JSON.stringify({
+          alreadyVerifiedDiscord: data.alreadyVerifiedDiscord,
+          testing1: data.testing1,
+          testing2: data.testing2,
+        }),
       })
 
       if (!response.ok) {
         throw new Error(`HTTP error! status: ${response.status}`)
       }
 
-      const data = await response.json()
-      console.log(data)
+      const responseData = await response.json()
+      console.log(responseData)
     } catch (error) {
       console.error('Error:', error)
     }
@@ -189,23 +184,27 @@ export const ConnectDashboard: FC<ConnectDashboardProps> = ({ adminWalletAddress
     return (
       <Menu>
         <form onSubmit={handleSubmit(onSubmit)}>
-          <label>
-            New Bot Reply Message:
-            <input {...register('alreadyVerifiedDiscord', { required: true })} />
-          </label>
-          {errors.alreadyVerifiedDiscord && <span>This field is required</span>}
-          {Array.from({ length: 10 }, (_, i) => i + 1).map((num) => {
-            const fieldName = `field${num}` as keyof FormData
-            return (
-              <div key={num}>
-                <label htmlFor={fieldName}>
-                  Input Field {num}:
-                  <input id={fieldName} {...register(fieldName, { required: true })} />
-                </label>
-                {errors[fieldName] && <span>This field is required</span>}
-              </div>
-            )
-          })}
+          <div>
+            <label>
+              If you are already verified:
+              <input {...register('alreadyVerifiedDiscord', { required: true })} />
+            </label>
+            {errors.alreadyVerifiedDiscord && <span>This field is required</span>}
+          </div>
+          <div>
+            <label>
+              Testing 1 field:
+              <input {...register('testing1', { required: true })} />
+            </label>
+            {errors.testing1 && <span>This field is required</span>}
+          </div>
+          <div>
+            <label>
+              Testing 2 field:
+              <input {...register('testing2', { required: true })} />
+            </label>
+            {errors.testing2 && <span>This field is required</span>}
+          </div>
           <input type="submit" />
         </form>
 
