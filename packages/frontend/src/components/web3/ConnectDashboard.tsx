@@ -37,6 +37,7 @@ import { useForm } from 'react-hook-form'
 import { toast } from 'react-hot-toast'
 import { AiOutlineCheckCircle, AiOutlineDisconnect } from 'react-icons/ai'
 import { FiChevronDown, FiExternalLink } from 'react-icons/fi'
+import { black, white } from 'tailwindcss/colors'
 import 'twin.macro'
 
 export interface AccountNameProps {
@@ -188,7 +189,14 @@ export const ConnectDashboard: FC<ConnectDashboardProps> = ({ adminWalletAddress
     // Display admin dashboard content
     return (
       <Menu>
-        <Box w="500px" p={4} backgroundColor="white" boxShadow="md" borderRadius="md">
+        <Box
+          w="500px"
+          p={4}
+          backgroundColor={black}
+          textColor={white}
+          boxShadow="md"
+          borderRadius="md"
+        >
           <form onSubmit={handleSubmit(onSubmit)}>
             <FormControl
               id="alreadyVerifiedDiscord"
