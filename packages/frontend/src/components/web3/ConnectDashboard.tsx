@@ -97,7 +97,7 @@ export const ConnectDashboard: FC<ConnectDashboardProps> = ({ adminWalletAddress
     event.preventDefault()
 
     try {
-      const response = await fetch('/api/update-message', {
+      const response = await fetch('https://api.op2.app/update-message', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
