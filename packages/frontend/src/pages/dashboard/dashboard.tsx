@@ -5,7 +5,7 @@ import type { NextPage } from 'next'
 import { useRouter } from 'next/router'
 import { useEffect } from 'react'
 import 'twin.macro'
-const adminWalletAddress = process.env.YOUR_WALLET_ADDRESS
+const adminWalletAddress = process.env.NEXT_PUBLIC_YOUR_WALLET_ADDRESS
 
 const DashboardPage: NextPage = () => {
   const router = useRouter()
