@@ -28,6 +28,7 @@ import { useIsSSR } from '@utils/useIsSSR'
 import Image from 'next/image'
 import aznsIconSvg from 'public/icons/azns-icon.svg'
 import { FC, useState } from 'react'
+import { useForm } from 'react-hook-form'
 import { toast } from 'react-hot-toast'
 import { AiOutlineCheckCircle, AiOutlineDisconnect } from 'react-icons/ai'
 import { FiChevronDown, FiExternalLink } from 'react-icons/fi'
@@ -86,8 +87,17 @@ export const ConnectDashboard: FC<ConnectDashboardProps> = ({ adminWalletAddress
 
   const isSSR = useIsSSR()
 
-  console.log('adminWalletAddress:', adminWalletAddress)
-  console.log('activeAccount:', activeAccount)
+  interface FormData {
+    newMessage: string
+  }
+
+  // Inside your ConnectDashboard component
+  const { register, handleSubmit } = useForm<FormData>()
+
+  const onSubmit = (data: FormData) => {
+    // Save the new message
+    console.log(data.newMessage)
+  }
 
   // Connect Button
   if (!activeAccount)
@@ -148,6 +158,14 @@ export const ConnectDashboard: FC<ConnectDashboardProps> = ({ adminWalletAddress
     // Display admin dashboard content
     return (
       <Menu>
+        <form onSubmit={handleSubmit(onSubmit)}>
+          <label>
+            New Bot Reply Message:
+            <input {...register('newMessage')} />
+          </label>
+          <input type="submit" />
+        </form>
+
         <HStack>
           {/* Account Balance */}
           {balanceFormatted !== undefined && (
