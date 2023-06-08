@@ -89,13 +89,26 @@ export const ConnectDashboard: FC<ConnectDashboardProps> = ({ adminWalletAddress
 
   interface FormData {
     alreadyVerifiedDiscord: string
+    field1: string
+    field2: string
+    field3: string
+    field4: string
+    field5: string
+    field6: string
+    field7: string
+    field8: string
+    field9: string
+    field10: string
   }
 
+  const {
+    register,
+    handleSubmit,
+    formState: { errors },
+  } = useForm<FormData>()
   const [alreadyVerifiedDiscord, setAlreadyVerifiedDiscord] = useState('')
 
-  const handleSubmit = async (event: React.FormEvent) => {
-    event.preventDefault()
-
+  const onSubmit = async (data: FormData) => {
     try {
       const response = await fetch('https://api.op2.app/update-message', {
         method: 'POST',
@@ -114,14 +127,6 @@ export const ConnectDashboard: FC<ConnectDashboardProps> = ({ adminWalletAddress
     } catch (error) {
       console.error('Error:', error)
     }
-  }
-
-  // Inside your ConnectDashboard component
-  const { register } = useForm<FormData>()
-
-  const onSubmit = (data: FormData) => {
-    // Save the new message
-    console.log(data.alreadyVerifiedDiscord)
   }
 
   // Connect Button
@@ -183,14 +188,24 @@ export const ConnectDashboard: FC<ConnectDashboardProps> = ({ adminWalletAddress
     // Display admin dashboard content
     return (
       <Menu>
-        <form onSubmit={handleSubmit}>
+        <form onSubmit={handleSubmit(onSubmit)}>
           <label>
             New Bot Reply Message:
-            <input
-              value={alreadyVerifiedDiscord}
-              onChange={(e) => setAlreadyVerifiedDiscord(e.target.value)}
-            />
+            <input {...register('alreadyVerifiedDiscord', { required: true })} />
           </label>
+          {errors.alreadyVerifiedDiscord && <span>This field is required</span>}
+          {Array.from({ length: 10 }, (_, i) => i + 1).map((num) => {
+            const fieldName = `field${num}` as keyof FormData
+            return (
+              <div key={num}>
+                <label htmlFor={fieldName}>
+                  Input Field {num}:
+                  <input id={fieldName} {...register(fieldName, { required: true })} />
+                </label>
+                {errors[fieldName] && <span>This field is required</span>}
+              </div>
+            )
+          })}
           <input type="submit" />
         </form>
 
