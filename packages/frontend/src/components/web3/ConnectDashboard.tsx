@@ -33,6 +33,36 @@ import { AiOutlineCheckCircle, AiOutlineDisconnect } from 'react-icons/ai'
 import { FiChevronDown, FiExternalLink } from 'react-icons/fi'
 import 'twin.macro'
 
+export interface AccountNameProps {
+  account: InjectedAccount
+}
+export const AccountName: FC<AccountNameProps> = ({ account, ...rest }) => {
+  const { activeChain } = useInkathon()
+  const { primaryDomain } = useResolveAddressToDomain(
+    activeChain?.network === SupportedChainId.AlephZeroTestnet ? account?.address : undefined,
+    {
+      chainId: activeChain?.network,
+    },
+  )
+
+  return (
+    <Text
+      fontSize="sm"
+      fontFamily="mono"
+      fontWeight="bold"
+      textTransform="uppercase"
+      display="flex"
+      letterSpacing={-0.25}
+      alignItems="baseline"
+      gap="4px"
+      {...rest}
+    >
+      {primaryDomain || account.name}
+      {!!primaryDomain && <Image src={aznsIconSvg} alt="AZERO.ID Logo" width={11} height={11} />}
+    </Text>
+  )
+}
+
 export interface ConnectDashboardProps {
   adminWalletAddress?: string
 }
@@ -109,142 +139,120 @@ export const ConnectDashboard: FC<ConnectDashboardProps> = ({ adminWalletAddress
       </Menu>
     )
 
-  // Check if the connected wallet is the admin wallet
+  // Account Menu & Disconnect Button
   if (activeAccount?.address === adminWalletAddress) {
     // Display admin dashboard content
     return (
-      <div>
-        <h1>Admin Dashboard</h1>
-        {/* Admin dashboard content goes here */}
-      </div>
-    )
-  }
+      <Menu>
+        <HStack>
+          {/* Account Balance */}
+          {balanceFormatted !== undefined && (
+            <Button
+              py={6}
+              pl={5}
+              rounded="2xl"
+              fontWeight="bold"
+              fontSize="sm"
+              fontFamily="mono"
+              letterSpacing={-0.25}
+              pointerEvents="none"
+            >
+              {balanceFormatted}
+            </Button>
+          )}
 
-  // Account Menu & Disconnect Button
-  return (
-    <Menu>
-      <HStack>
-        {/* Account Balance */}
-        {balanceFormatted !== undefined && (
-          <Button
+          {/* Account Name, Address, and AZNS-Domain (if assigned) */}
+          <MenuButton
+            as={Button}
+            rightIcon={<FiChevronDown size={22} />}
+            hidden={false}
             py={6}
             pl={5}
             rounded="2xl"
             fontWeight="bold"
-            fontSize="sm"
-            fontFamily="mono"
-            letterSpacing={-0.25}
-            pointerEvents="none"
           >
-            {balanceFormatted}
-          </Button>
-        )}
-
-        {/* Account Name, Address, and AZNS-Domain (if assigned) */}
-        <MenuButton
-          as={Button}
-          rightIcon={<FiChevronDown size={22} />}
-          hidden={false}
-          py={6}
-          pl={5}
-          rounded="2xl"
-          fontWeight="bold"
-        >
-          <VStack spacing={0.5}>
-            <AccountName account={activeAccount} />
-            <Text fontSize="xs" fontWeight="normal" opacity={0.75}>
-              {truncateHash(encodeAddress(activeAccount.address, activeChain?.ss58Prefix || 42), 8)}
-            </Text>
-          </VStack>
-        </MenuButton>
-      </HStack>
-
-      <MenuList bgColor="blackAlpha.900" borderColor="whiteAlpha.300" rounded="2xl" overflow="auto">
-        {/* Supported Chains */}
-        {supportedChains.map((chain) => (
-          <MenuItem
-            key={chain.network}
-            isDisabled={chain.network === activeChain?.network}
-            onClick={async () => {
-              await switchActiveChain?.(chain)
-              toast.success(`Switched to ${chain.name}`)
-            }}
-            tw="cursor-default bg-transparent hocus:bg-gray-800"
-          >
-            <VStack align="start" spacing={0}>
-              <HStack>
-                <Text>{chain.name}</Text>
-                {chain.network === activeChain?.network && <AiOutlineCheckCircle size={16} />}
-              </HStack>
+            <VStack spacing={0.5}>
+              <AccountName account={activeAccount} />
+              <Text fontSize="xs" fontWeight="normal" opacity={0.75}>
+                {truncateHash(
+                  encodeAddress(activeAccount.address, activeChain?.ss58Prefix || 42),
+                  8,
+                )}
+              </Text>
             </VStack>
-          </MenuItem>
-        ))}
+          </MenuButton>
+        </HStack>
 
-        {/* Available Accounts/Wallets */}
-        <MenuDivider />
-        {(accounts || []).map((acc) => {
-          const encodedAddress = encodeAddress(acc.address, activeChain?.ss58Prefix || 42)
-          const truncatedEncodedAddress = truncateHash(encodedAddress, 10)
-          return (
+        <MenuList
+          bgColor="blackAlpha.900"
+          borderColor="whiteAlpha.300"
+          rounded="2xl"
+          overflow="auto"
+        >
+          {/* Supported Chains */}
+          {supportedChains.map((chain) => (
             <MenuItem
-              key={encodedAddress}
-              isDisabled={acc.address === activeAccount.address}
-              onClick={() => {
-                setActiveAccount?.(acc)
+              key={chain.network}
+              isDisabled={chain.network === activeChain?.network}
+              onClick={async () => {
+                await switchActiveChain?.(chain)
+                toast.success(`Switched to ${chain.name}`)
               }}
               tw="cursor-default bg-transparent hocus:bg-gray-800"
             >
               <VStack align="start" spacing={0}>
                 <HStack>
-                  <AccountName account={acc} />
-                  {acc.address === activeAccount.address && <AiOutlineCheckCircle size={16} />}
+                  <Text>{chain.name}</Text>
+                  {chain.network === activeChain?.network && <AiOutlineCheckCircle size={16} />}
                 </HStack>
-                <Text fontSize="xs">{truncatedEncodedAddress}</Text>
               </VStack>
             </MenuItem>
-          )
-        })}
+          ))}
 
-        {/* Disconnect Button */}
-        <MenuDivider />
-        <MenuItem
-          onClick={disconnect}
-          icon={<AiOutlineDisconnect size={18} />}
-          tw="bg-transparent hocus:bg-gray-800"
-        >
-          Disconnect
-        </MenuItem>
-      </MenuList>
-    </Menu>
-  )
-}
+          {/* Available Accounts/Wallets */}
+          <MenuDivider />
+          {(accounts || []).map((acc) => {
+            const encodedAddress = encodeAddress(acc.address, activeChain?.ss58Prefix || 42)
+            const truncatedEncodedAddress = truncateHash(encodedAddress, 10)
+            return (
+              <MenuItem
+                key={encodedAddress}
+                isDisabled={acc.address === activeAccount.address}
+                onClick={() => {
+                  setActiveAccount?.(acc)
+                }}
+                tw="cursor-default bg-transparent hocus:bg-gray-800"
+              >
+                <VStack align="start" spacing={0}>
+                  <HStack>
+                    <AccountName account={acc} />
+                    {acc.address === activeAccount.address && <AiOutlineCheckCircle size={16} />}
+                  </HStack>
+                  <Text fontSize="xs">{truncatedEncodedAddress}</Text>
+                </VStack>
+              </MenuItem>
+            )
+          })}
 
-export interface AccountNameProps {
-  account: InjectedAccount
-}
-export const AccountName: FC<AccountNameProps> = ({ account, ...rest }) => {
-  const { activeChain } = useInkathon()
-  const { primaryDomain } = useResolveAddressToDomain(
-    activeChain?.network === SupportedChainId.AlephZeroTestnet ? account?.address : undefined,
-    {
-      chainId: activeChain?.network,
-    },
-  )
-
-  return (
-    <Text
-      fontSize="sm"
-      fontFamily="mono"
-      fontWeight="bold"
-      textTransform="uppercase"
-      display="flex"
-      letterSpacing={-0.25}
-      alignItems="baseline"
-      gap="4px"
-      {...rest}
-    >
-      {primaryDomain || account.name}
-      {!!primaryDomain && <Image src={aznsIconSvg} alt="AZERO.ID Logo" width={11} height={11} />}
-    </Text>
-  )
+          {/* Disconnect Button */}
+          <MenuDivider />
+          <MenuItem
+            onClick={disconnect}
+            icon={<AiOutlineDisconnect size={18} />}
+            tw="bg-transparent hocus:bg-gray-800"
+          >
+            Disconnect
+          </MenuItem>
+        </MenuList>
+      </Menu>
+    )
+  } else {
+    // Default return statement
+    return (
+      <div>
+        <h1>Access Denied</h1>
+        <p>You do not have access to this page.</p>
+      </div>
+    )
+  }
 }
