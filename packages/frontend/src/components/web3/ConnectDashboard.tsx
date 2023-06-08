@@ -91,8 +91,33 @@ export const ConnectDashboard: FC<ConnectDashboardProps> = ({ adminWalletAddress
     newMessage: string
   }
 
+  const [newMessage, setNewMessage] = useState('')
+
+  const handleSubmit = async (event: React.FormEvent) => {
+    event.preventDefault()
+
+    try {
+      const response = await fetch('/api/update-message', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({ newMessage }),
+      })
+
+      if (!response.ok) {
+        throw new Error(`HTTP error! status: ${response.status}`)
+      }
+
+      const data = await response.json()
+      console.log(data)
+    } catch (error) {
+      console.error('Error:', error)
+    }
+  }
+
   // Inside your ConnectDashboard component
-  const { register, handleSubmit } = useForm<FormData>()
+  const { register } = useForm<FormData>()
 
   const onSubmit = (data: FormData) => {
     // Save the new message
@@ -158,10 +183,10 @@ export const ConnectDashboard: FC<ConnectDashboardProps> = ({ adminWalletAddress
     // Display admin dashboard content
     return (
       <Menu>
-        <form onSubmit={handleSubmit(onSubmit)}>
+        <form onSubmit={handleSubmit}>
           <label>
             New Bot Reply Message:
-            <input {...register('newMessage')} />
+            <input value={newMessage} onChange={(e) => setNewMessage(e.target.value)} />
           </label>
           <input type="submit" />
         </form>
