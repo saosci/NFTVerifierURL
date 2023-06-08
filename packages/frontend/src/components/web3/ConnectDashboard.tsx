@@ -1,8 +1,13 @@
 import { SupportedChainId } from '@azns/resolver-core'
 import { useResolveAddressToDomain } from '@azns/resolver-react'
 import {
+  Box,
   Button,
+  FormControl,
+  FormErrorMessage,
+  FormLabel,
   HStack,
+  Input,
   Link,
   Menu,
   MenuButton,
@@ -183,32 +188,37 @@ export const ConnectDashboard: FC<ConnectDashboardProps> = ({ adminWalletAddress
     // Display admin dashboard content
     return (
       <Menu>
-        <form onSubmit={handleSubmit(onSubmit)}>
-          <div>
-            <label>
-              If you are already verified:
-              <input {...register('alreadyVerifiedDiscord', { required: true })} />
-            </label>
-            {errors.alreadyVerifiedDiscord && <span>This field is required</span>}
-          </div>
-          <div>
-            <label>
-              Testing 1 field:
-              <input {...register('testing1', { required: true })} />
-            </label>
-            {errors.testing1 && <span>This field is required</span>}
-          </div>
-          <div>
-            <label>
-              Testing 2 field:
-              <input {...register('testing2', { required: true })} />
-            </label>
-            {errors.testing2 && <span>This field is required</span>}
-          </div>
-          <input type="submit" />
-        </form>
+        <Box w="500px" p={4} backgroundColor="white" boxShadow="md" borderRadius="md">
+          <form onSubmit={handleSubmit(onSubmit)}>
+            <FormControl
+              id="alreadyVerifiedDiscord"
+              isRequired
+              isInvalid={!!errors.alreadyVerifiedDiscord}
+            >
+              <FormLabel>If you are already verified:</FormLabel>
+              <Input {...register('alreadyVerifiedDiscord')} />
+              <FormErrorMessage>
+                {errors.alreadyVerifiedDiscord && 'This field is required'}
+              </FormErrorMessage>
+            </FormControl>
 
-        <MenuDivider />
+            <FormControl id="testing1" isRequired isInvalid={!!errors.testing1} mt={4}>
+              <FormLabel>Testing 1 field:</FormLabel>
+              <Input {...register('testing1')} />
+              <FormErrorMessage>{errors.testing1 && 'This field is required'}</FormErrorMessage>
+            </FormControl>
+
+            <FormControl id="testing2" isRequired isInvalid={!!errors.testing2} mt={4}>
+              <FormLabel>Testing 2 field:</FormLabel>
+              <Input {...register('testing2')} />
+              <FormErrorMessage>{errors.testing2 && 'This field is required'}</FormErrorMessage>
+            </FormControl>
+
+            <Button type="submit" colorScheme="blue" mt={6}>
+              Submit
+            </Button>
+          </form>
+        </Box>
 
         <HStack>
           {/* Account Balance */}
