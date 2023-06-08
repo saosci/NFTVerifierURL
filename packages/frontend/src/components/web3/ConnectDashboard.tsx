@@ -33,8 +33,11 @@ import { AiOutlineCheckCircle, AiOutlineDisconnect } from 'react-icons/ai'
 import { FiChevronDown, FiExternalLink } from 'react-icons/fi'
 import 'twin.macro'
 
+export interface ConnectDashboardProps {
+  adminWalletAddress?: string
+}
 export interface ConnectDashboardProps {}
-export const ConnectDashboard: FC<ConnectDashboardProps> = () => {
+export const ConnectDashboard: FC<ConnectDashboardProps> = ({ adminWalletAddress }) => {
   const {
     activeChain,
     switchActiveChain,
@@ -105,6 +108,17 @@ export const ConnectDashboard: FC<ConnectDashboardProps> = () => {
         </MenuList>
       </Menu>
     )
+
+  // Check if the connected wallet is the admin wallet
+  if (activeAccount?.address === adminWalletAddress) {
+    // Display admin dashboard content
+    return (
+      <div>
+        <h1>Admin Dashboard</h1>
+        {/* Admin dashboard content goes here */}
+      </div>
+    )
+  }
 
   // Account Menu & Disconnect Button
   return (

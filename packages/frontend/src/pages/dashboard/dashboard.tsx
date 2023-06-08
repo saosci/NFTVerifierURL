@@ -19,20 +19,9 @@ const DashboardPage: NextPage = () => {
 
   return (
     <CenterBody tw="mt-20 mb-10 px-5">
-      <ConnectDashboard />
-      {activeAccount?.address === adminWalletAddress && (
-        <>
-          <h1>Dashboard</h1>
-          {/* Dashboard content goes here */}
-          <div tw="mt-10 flex w-full flex-wrap items-start justify-center gap-4"></div>
-        </>
-      )}
-      {activeAccount?.address !== adminWalletAddress && (
-        <>
-          <h1>Access Denied</h1>
-          <p>You do not have access to this page.</p>
-        </>
-      )}
+      {/* Connect Wallet Button */}
+      <ConnectDashboard adminWalletAddress={adminWalletAddress} />
+      <div tw="mt-10 flex w-full flex-wrap items-start justify-center gap-4"></div>
     </CenterBody>
   )
 }
