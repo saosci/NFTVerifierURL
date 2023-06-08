@@ -17,25 +17,24 @@ const DashboardPage: NextPage = () => {
     console.log(userId)
   }, [userId])
 
-  if (activeAccount?.address === adminWalletAddress) {
-    // Display dashboard content
-    return (
-      <CenterBody tw="mt-20 mb-10 px-5">
-        <h1>Dashboard</h1>
-        {/* Dashboard content goes here */}
-        <div tw="mt-10 flex w-full flex-wrap items-start justify-center gap-4"></div>
-      </CenterBody>
-    )
-  } else {
-    // Display access denied message
-    return (
-      <CenterBody tw="mt-20 mb-10 px-5">
-        <h1>Access Denied</h1>
-        <p>You do not have access to this page.</p>
-        <ConnectDashboard />
-      </CenterBody>
-    )
-  }
+  return (
+    <CenterBody tw="mt-20 mb-10 px-5">
+      <ConnectDashboard />
+      {activeAccount?.address === adminWalletAddress && (
+        <>
+          <h1>Dashboard</h1>
+          {/* Dashboard content goes here */}
+          <div tw="mt-10 flex w-full flex-wrap items-start justify-center gap-4"></div>
+        </>
+      )}
+      {activeAccount?.address !== adminWalletAddress && (
+        <>
+          <h1>Access Denied</h1>
+          <p>You do not have access to this page.</p>
+        </>
+      )}
+    </CenterBody>
+  )
 }
 
 export default DashboardPage
