@@ -86,6 +86,9 @@ export const ConnectDashboard: FC<ConnectDashboardProps> = ({ adminWalletAddress
 
   const isSSR = useIsSSR()
 
+  console.log('adminWalletAddress:', adminWalletAddress)
+  console.log('activeAccount:', activeAccount)
+
   // Connect Button
   if (!activeAccount)
     return (
@@ -141,6 +144,7 @@ export const ConnectDashboard: FC<ConnectDashboardProps> = ({ adminWalletAddress
 
   // Account Menu & Disconnect Button
   if (activeAccount?.address === adminWalletAddress) {
+    console.log('Active account is admin. Showing admin dashboard content.')
     // Display admin dashboard content
     return (
       <Menu>
@@ -247,6 +251,7 @@ export const ConnectDashboard: FC<ConnectDashboardProps> = ({ adminWalletAddress
       </Menu>
     )
   } else {
+    console.log('Active account is not admin. Showing Access Denied message.')
     // Default return statement
     return (
       <div>
