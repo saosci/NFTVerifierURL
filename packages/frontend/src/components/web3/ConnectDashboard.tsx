@@ -34,7 +34,7 @@ import { FiChevronDown, FiExternalLink } from 'react-icons/fi'
 import 'twin.macro'
 
 export interface ConnectDashboardProps {}
-export const ConnectButton: FC<ConnectDashboardProps> = () => {
+export const ConnectDashboard: FC<ConnectDashboardProps> = () => {
   const {
     activeChain,
     switchActiveChain,
