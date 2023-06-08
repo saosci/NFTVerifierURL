@@ -88,10 +88,10 @@ export const ConnectDashboard: FC<ConnectDashboardProps> = ({ adminWalletAddress
   const isSSR = useIsSSR()
 
   interface FormData {
-    newMessage: string
+    alreadyVerifiedDiscord: string
   }
 
-  const [newMessage, setNewMessage] = useState('')
+  const [alreadyVerifiedDiscord, setAlreadyVerifiedDiscord] = useState('')
 
   const handleSubmit = async (event: React.FormEvent) => {
     event.preventDefault()
@@ -102,7 +102,7 @@ export const ConnectDashboard: FC<ConnectDashboardProps> = ({ adminWalletAddress
         headers: {
           'Content-Type': 'application/json',
         },
-        body: JSON.stringify({ newMessage }),
+        body: JSON.stringify({ alreadyVerifiedDiscord }),
       })
 
       if (!response.ok) {
@@ -121,7 +121,7 @@ export const ConnectDashboard: FC<ConnectDashboardProps> = ({ adminWalletAddress
 
   const onSubmit = (data: FormData) => {
     // Save the new message
-    console.log(data.newMessage)
+    console.log(data.alreadyVerifiedDiscord)
   }
 
   // Connect Button
@@ -186,10 +186,15 @@ export const ConnectDashboard: FC<ConnectDashboardProps> = ({ adminWalletAddress
         <form onSubmit={handleSubmit}>
           <label>
             New Bot Reply Message:
-            <input value={newMessage} onChange={(e) => setNewMessage(e.target.value)} />
+            <input
+              value={alreadyVerifiedDiscord}
+              onChange={(e) => setAlreadyVerifiedDiscord(e.target.value)}
+            />
           </label>
           <input type="submit" />
         </form>
+
+        <MenuDivider />
 
         <HStack>
           {/* Account Balance */}
