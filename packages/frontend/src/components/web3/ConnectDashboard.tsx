@@ -265,7 +265,17 @@ export const ConnectDashboard: FC<ConnectDashboardProps> = ({ adminWalletAddress
                   <Icon as={IoIosInformationCircleOutline} w={5} h={5} ml={2} mt={-3} />
                 </Tooltip>
               </Flex>
-              <Textarea {...register('testing2')} maxLength={250} />
+              <Textarea
+                {...register('testing2')}
+                maxLength={250}
+                css={{
+                  '&::-webkit-scrollbar': {
+                    display: 'none',
+                  },
+                  '-ms-overflow-style': 'none',
+                  'scrollbar-width': 'none',
+                }}
+              />
               <FormErrorMessage>{errors.testing2 && 'This field is required'}</FormErrorMessage>
             </FormControl>
           </form>
