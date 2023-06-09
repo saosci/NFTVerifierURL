@@ -37,7 +37,7 @@ import { useForm } from 'react-hook-form'
 import { toast } from 'react-hot-toast'
 import { AiOutlineCheckCircle, AiOutlineDisconnect } from 'react-icons/ai'
 import { FiChevronDown, FiExternalLink } from 'react-icons/fi'
-import { black, white } from 'tailwindcss/colors'
+import { black } from 'tailwindcss/colors'
 import 'twin.macro'
 
 export interface AccountNameProps {
@@ -193,7 +193,7 @@ export const ConnectDashboard: FC<ConnectDashboardProps> = ({ adminWalletAddress
           w="500px"
           p={4}
           backgroundColor={black}
-          textColor={white}
+          color="#F5FEFD"
           boxShadow="md"
           borderRadius="md"
         >
@@ -234,113 +234,113 @@ export const ConnectDashboard: FC<ConnectDashboardProps> = ({ adminWalletAddress
               <Input {...register('testing2')} />
               <FormErrorMessage>{errors.testing2 && 'This field is required'}</FormErrorMessage>
             </FormControl>
-
-            <Button type="submit" colorScheme="blue" mt={6}>
-              Submit
-            </Button>
           </form>
         </Box>
+        <Box display="flex" flexDirection="column" alignItems="center">
+          <Button type="submit" colorScheme="blue" mt={6} width="100%">
+            Submit
+          </Button>
+          <HStack>
+            {/* Account Balance */}
+            {balanceFormatted !== undefined && (
+              <Button
+                py={6}
+                pl={5}
+                rounded="2xl"
+                fontWeight="bold"
+                fontSize="sm"
+                fontFamily="mono"
+                letterSpacing={-0.25}
+                pointerEvents="none"
+              >
+                {balanceFormatted}
+              </Button>
+            )}
 
-        <HStack>
-          {/* Account Balance */}
-          {balanceFormatted !== undefined && (
-            <Button
+            {/* Account Name, Address, and AZNS-Domain (if assigned) */}
+            <MenuButton
+              as={Button}
+              rightIcon={<FiChevronDown size={22} />}
+              hidden={false}
               py={6}
               pl={5}
               rounded="2xl"
               fontWeight="bold"
-              fontSize="sm"
-              fontFamily="mono"
-              letterSpacing={-0.25}
-              pointerEvents="none"
             >
-              {balanceFormatted}
-            </Button>
-          )}
-
-          {/* Account Name, Address, and AZNS-Domain (if assigned) */}
-          <MenuButton
-            as={Button}
-            rightIcon={<FiChevronDown size={22} />}
-            hidden={false}
-            py={6}
-            pl={5}
-            rounded="2xl"
-            fontWeight="bold"
-          >
-            <VStack spacing={0.5}>
-              <AccountName account={activeAccount} />
-              <Text fontSize="xs" fontWeight="normal" opacity={0.75}>
-                {truncateHash(
-                  encodeAddress(activeAccount.address, activeChain?.ss58Prefix || 42),
-                  8,
-                )}
-              </Text>
-            </VStack>
-          </MenuButton>
-        </HStack>
-
-        <MenuList
-          bgColor="blackAlpha.900"
-          borderColor="whiteAlpha.300"
-          rounded="2xl"
-          overflow="auto"
-        >
-          {/* Supported Chains */}
-          {supportedChains.map((chain) => (
-            <MenuItem
-              key={chain.network}
-              isDisabled={chain.network === activeChain?.network}
-              onClick={async () => {
-                await switchActiveChain?.(chain)
-                toast.success(`Switched to ${chain.name}`)
-              }}
-              tw="cursor-default bg-transparent hocus:bg-gray-800"
-            >
-              <VStack align="start" spacing={0}>
-                <HStack>
-                  <Text>{chain.name}</Text>
-                  {chain.network === activeChain?.network && <AiOutlineCheckCircle size={16} />}
-                </HStack>
+              <VStack spacing={0.5}>
+                <AccountName account={activeAccount} />
+                <Text fontSize="xs" fontWeight="normal" opacity={0.75}>
+                  {truncateHash(
+                    encodeAddress(activeAccount.address, activeChain?.ss58Prefix || 42),
+                    8,
+                  )}
+                </Text>
               </VStack>
-            </MenuItem>
-          ))}
+            </MenuButton>
+          </HStack>
 
-          {/* Available Accounts/Wallets */}
-          <MenuDivider />
-          {(accounts || []).map((acc) => {
-            const encodedAddress = encodeAddress(acc.address, activeChain?.ss58Prefix || 42)
-            const truncatedEncodedAddress = truncateHash(encodedAddress, 10)
-            return (
+          <MenuList
+            bgColor="blackAlpha.900"
+            borderColor="whiteAlpha.300"
+            rounded="2xl"
+            overflow="auto"
+          >
+            {/* Supported Chains */}
+            {supportedChains.map((chain) => (
               <MenuItem
-                key={encodedAddress}
-                isDisabled={acc.address === activeAccount.address}
-                onClick={() => {
-                  setActiveAccount?.(acc)
+                key={chain.network}
+                isDisabled={chain.network === activeChain?.network}
+                onClick={async () => {
+                  await switchActiveChain?.(chain)
+                  toast.success(`Switched to ${chain.name}`)
                 }}
                 tw="cursor-default bg-transparent hocus:bg-gray-800"
               >
                 <VStack align="start" spacing={0}>
                   <HStack>
-                    <AccountName account={acc} />
-                    {acc.address === activeAccount.address && <AiOutlineCheckCircle size={16} />}
+                    <Text>{chain.name}</Text>
+                    {chain.network === activeChain?.network && <AiOutlineCheckCircle size={16} />}
                   </HStack>
-                  <Text fontSize="xs">{truncatedEncodedAddress}</Text>
                 </VStack>
               </MenuItem>
-            )
-          })}
+            ))}
 
-          {/* Disconnect Button */}
-          <MenuDivider />
-          <MenuItem
-            onClick={disconnect}
-            icon={<AiOutlineDisconnect size={18} />}
-            tw="bg-transparent hocus:bg-gray-800"
-          >
-            Disconnect
-          </MenuItem>
-        </MenuList>
+            {/* Available Accounts/Wallets */}
+            <MenuDivider />
+            {(accounts || []).map((acc) => {
+              const encodedAddress = encodeAddress(acc.address, activeChain?.ss58Prefix || 42)
+              const truncatedEncodedAddress = truncateHash(encodedAddress, 10)
+              return (
+                <MenuItem
+                  key={encodedAddress}
+                  isDisabled={acc.address === activeAccount.address}
+                  onClick={() => {
+                    setActiveAccount?.(acc)
+                  }}
+                  tw="cursor-default bg-transparent hocus:bg-gray-800"
+                >
+                  <VStack align="start" spacing={0}>
+                    <HStack>
+                      <AccountName account={acc} />
+                      {acc.address === activeAccount.address && <AiOutlineCheckCircle size={16} />}
+                    </HStack>
+                    <Text fontSize="xs">{truncatedEncodedAddress}</Text>
+                  </VStack>
+                </MenuItem>
+              )
+            })}
+
+            {/* Disconnect Button */}
+            <MenuDivider />
+            <MenuItem
+              onClick={disconnect}
+              icon={<AiOutlineDisconnect size={18} />}
+              tw="bg-transparent hocus:bg-gray-800"
+            >
+              Disconnect
+            </MenuItem>
+          </MenuList>
+        </Box>
       </Menu>
     )
   } else {
