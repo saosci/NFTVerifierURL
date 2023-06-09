@@ -35,7 +35,7 @@ import { truncateHash } from '@utils/truncateHash'
 import { useIsSSR } from '@utils/useIsSSR'
 import Image from 'next/image'
 import aznsIconSvg from 'public/icons/azns-icon.svg'
-import { FC, useState } from 'react'
+import { FC, useEffect, useState } from 'react'
 import { useForm } from 'react-hook-form'
 import { toast } from 'react-hot-toast'
 import { AiOutlineCheckCircle, AiOutlineDisconnect } from 'react-icons/ai'
@@ -97,6 +97,25 @@ export const ConnectDashboard: FC<ConnectDashboardProps> = ({ adminWalletAddress
 
   const isSSR = useIsSSR()
 
+  // HERE WE'RE UPDATING THE FRONTEND WITH THE LATEST INFO FROM THE BACKEND //
+
+  const [initialValues, setInitialValues] = useState({
+    alreadyVerifiedDiscord: '',
+    testing1: '',
+    testing2: '',
+  })
+
+  useEffect(() => {
+    const fetchInitialValues = async () => {
+      const response = await fetch('https://api.op2.app/get-latest-message')
+      const data = await response.json()
+      setInitialValues(data)
+    }
+
+    fetchInitialValues()
+  }, [])
+
+  // WE'RE SHOWING WHAT'S IN THE FORM
   interface FormData {
     alreadyVerifiedDiscord: string
     testing1: string
@@ -108,6 +127,8 @@ export const ConnectDashboard: FC<ConnectDashboardProps> = ({ adminWalletAddress
     handleSubmit,
     formState: { errors },
   } = useForm<FormData>()
+
+  // THIS IS WHERE WE SEND IT TO THE BACKEND
 
   const onSubmit = async (data: FormData) => {
     try {
@@ -219,7 +240,11 @@ export const ConnectDashboard: FC<ConnectDashboardProps> = ({ adminWalletAddress
                   <Icon as={IoIosInformationCircleOutline} w={5} h={5} ml={2} mt={-3} />
                 </Tooltip>
               </Flex>
-              <Textarea {...register('alreadyVerifiedDiscord')} maxLength={250} />
+              <Textarea
+                {...register('alreadyVerifiedDiscord')}
+                defaultValue={initialValues.alreadyVerifiedDiscord}
+                maxLength={250}
+              />
               <FormErrorMessage>
                 {errors.alreadyVerifiedDiscord && 'This field is required'}
               </FormErrorMessage>
@@ -243,7 +268,11 @@ export const ConnectDashboard: FC<ConnectDashboardProps> = ({ adminWalletAddress
                   <Icon as={IoIosInformationCircleOutline} w={5} h={5} ml={2} mt={-3} />
                 </Tooltip>
               </Flex>
-              <Textarea {...register('testing1')} maxLength={250} />
+              <Textarea
+                {...register('testing1')}
+                defaultValue={initialValues.testing1}
+                maxLength={250}
+              />
               <FormErrorMessage>{errors.testing1 && 'This field is required'}</FormErrorMessage>
             </FormControl>
 
@@ -267,14 +296,8 @@ export const ConnectDashboard: FC<ConnectDashboardProps> = ({ adminWalletAddress
               </Flex>
               <Textarea
                 {...register('testing2')}
+                defaultValue={initialValues.testing2}
                 maxLength={250}
-                css={{
-                  '&::-webkit-scrollbar': {
-                    display: 'none',
-                  },
-                  '-ms-overflow-style': 'none',
-                  'scrollbar-width': 'none',
-                }}
               />
               <FormErrorMessage>{errors.testing2 && 'This field is required'}</FormErrorMessage>
             </FormControl>
