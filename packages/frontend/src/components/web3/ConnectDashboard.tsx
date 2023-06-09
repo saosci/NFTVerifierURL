@@ -216,7 +216,7 @@ export const ConnectDashboard: FC<ConnectDashboardProps> = ({ adminWalletAddress
                   placement="right"
                   shouldWrapChildren
                 >
-                  <Icon as={IoIosInformationCircleOutline} w={5} h={5} ml={2} />
+                  <Icon as={IoIosInformationCircleOutline} w={5} h={5} ml={2} mt={-1} />
                 </Tooltip>
               </Flex>
               <Input {...register('alreadyVerifiedDiscord')} />
