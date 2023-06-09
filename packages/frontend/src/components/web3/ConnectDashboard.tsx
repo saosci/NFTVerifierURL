@@ -199,7 +199,7 @@ export const ConnectDashboard: FC<ConnectDashboardProps> = ({ adminWalletAddress
         >
           <form onSubmit={handleSubmit(onSubmit)}>
             <FormControl
-              textColor={black}
+              color="#F5FEFD"
               id="alreadyVerifiedDiscord"
               isRequired
               isInvalid={!!errors.alreadyVerifiedDiscord}
@@ -212,7 +212,7 @@ export const ConnectDashboard: FC<ConnectDashboardProps> = ({ adminWalletAddress
             </FormControl>
 
             <FormControl
-              textColor={black}
+              color="#F5FEFD"
               id="testing1"
               isRequired
               isInvalid={!!errors.testing1}
@@ -224,7 +224,7 @@ export const ConnectDashboard: FC<ConnectDashboardProps> = ({ adminWalletAddress
             </FormControl>
 
             <FormControl
-              textColor={black}
+              color="#F5FEFD"
               id="testing2"
               isRequired
               isInvalid={!!errors.testing2}
