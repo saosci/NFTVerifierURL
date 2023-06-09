@@ -208,9 +208,14 @@ export const ConnectDashboard: FC<ConnectDashboardProps> = ({ adminWalletAddress
               isRequired
               isInvalid={!!errors.alreadyVerifiedDiscord}
             >
-              <Flex alignItems="center">
+              <Flex justifyContent="space-between">
                 <FormLabel>If you are already verified:</FormLabel>
-                <Tooltip label="This is where you put your verification info" fontSize="md">
+                <Tooltip
+                  label="This is where you put your verification info"
+                  fontSize="md"
+                  placement="right"
+                  shouldWrapChildren
+                >
                   <Icon as={IoIosInformationCircleOutline} w={5} h={5} ml={2} />
                 </Tooltip>
               </Flex>
