@@ -3,6 +3,7 @@ import { useResolveAddressToDomain } from '@azns/resolver-react'
 import {
   Box,
   Button,
+  Flex,
   FormControl,
   FormErrorMessage,
   FormLabel,
@@ -207,10 +208,12 @@ export const ConnectDashboard: FC<ConnectDashboardProps> = ({ adminWalletAddress
               isRequired
               isInvalid={!!errors.alreadyVerifiedDiscord}
             >
-              <FormLabel>If you are already verified:</FormLabel>
-              <Tooltip label="This is where you put your verification info" fontSize="md">
-                <Icon as={IoIosInformationCircleOutline} w={5} h={5} ml={2} />
-              </Tooltip>
+              <Flex alignItems="center">
+                <FormLabel>If you are already verified:</FormLabel>
+                <Tooltip label="This is where you put your verification info" fontSize="md">
+                  <Icon as={IoIosInformationCircleOutline} w={5} h={5} ml={2} />
+                </Tooltip>
+              </Flex>
               <Input {...register('alreadyVerifiedDiscord')} />
               <FormErrorMessage>
                 {errors.alreadyVerifiedDiscord && 'This field is required'}
