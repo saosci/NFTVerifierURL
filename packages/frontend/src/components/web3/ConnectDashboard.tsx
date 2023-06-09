@@ -237,47 +237,51 @@ export const ConnectDashboard: FC<ConnectDashboardProps> = ({ adminWalletAddress
           </form>
         </Box>
         <Box display="flex" flexDirection="column" alignItems="center">
-          <Button type="submit" colorScheme="blue" mt={6} width="100%">
-            Submit
-          </Button>
-          <HStack>
-            {/* Account Balance */}
-            {balanceFormatted !== undefined && (
-              <Button
+          <div>
+            <Button type="submit" colorScheme="blue" mt={6} width="100%">
+              Submit
+            </Button>
+          </div>
+          <div>
+            <HStack>
+              {/* Account Balance */}
+              {balanceFormatted !== undefined && (
+                <Button
+                  py={6}
+                  pl={5}
+                  rounded="2xl"
+                  fontWeight="bold"
+                  fontSize="sm"
+                  fontFamily="mono"
+                  letterSpacing={-0.25}
+                  pointerEvents="none"
+                >
+                  {balanceFormatted}
+                </Button>
+              )}
+
+              {/* Account Name, Address, and AZNS-Domain (if assigned) */}
+              <MenuButton
+                as={Button}
+                rightIcon={<FiChevronDown size={22} />}
+                hidden={false}
                 py={6}
                 pl={5}
                 rounded="2xl"
                 fontWeight="bold"
-                fontSize="sm"
-                fontFamily="mono"
-                letterSpacing={-0.25}
-                pointerEvents="none"
               >
-                {balanceFormatted}
-              </Button>
-            )}
-
-            {/* Account Name, Address, and AZNS-Domain (if assigned) */}
-            <MenuButton
-              as={Button}
-              rightIcon={<FiChevronDown size={22} />}
-              hidden={false}
-              py={6}
-              pl={5}
-              rounded="2xl"
-              fontWeight="bold"
-            >
-              <VStack spacing={0.5}>
-                <AccountName account={activeAccount} />
-                <Text fontSize="xs" fontWeight="normal" opacity={0.75}>
-                  {truncateHash(
-                    encodeAddress(activeAccount.address, activeChain?.ss58Prefix || 42),
-                    8,
-                  )}
-                </Text>
-              </VStack>
-            </MenuButton>
-          </HStack>
+                <VStack spacing={0.5}>
+                  <AccountName account={activeAccount} />
+                  <Text fontSize="xs" fontWeight="normal" opacity={0.75}>
+                    {truncateHash(
+                      encodeAddress(activeAccount.address, activeChain?.ss58Prefix || 42),
+                      8,
+                    )}
+                  </Text>
+                </VStack>
+              </MenuButton>
+            </HStack>
+          </div>
 
           <MenuList
             bgColor="blackAlpha.900"
