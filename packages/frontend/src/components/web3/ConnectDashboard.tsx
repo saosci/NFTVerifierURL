@@ -113,7 +113,7 @@ export const ConnectDashboard: FC<ConnectDashboardProps> = ({ adminWalletAddress
           'Content-Type': 'application/json',
         },
         body: JSON.stringify({
-          text: data.alreadyVerifiedDiscord,
+          alreadyVerifiedDiscord: data.alreadyVerifiedDiscord,
           testing1: data.testing1,
           testing2: data.testing2,
         }),
