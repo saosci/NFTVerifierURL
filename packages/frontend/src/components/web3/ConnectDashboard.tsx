@@ -237,7 +237,7 @@ export const ConnectDashboard: FC<ConnectDashboardProps> = ({ adminWalletAddress
           </form>
         </Box>
         <Box display="flex" flexDirection="column" alignItems="center">
-          <Button type="submit" colorScheme="blue" mb={6} mt={1} width="100%">
+          <Button type="submit" colorScheme="blue" mb={2} mt={4} width="100%">
             Submit
           </Button>
           <HStack>
