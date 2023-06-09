@@ -194,7 +194,7 @@ export const ConnectDashboard: FC<ConnectDashboardProps> = ({ adminWalletAddress
           p={4}
           backgroundColor={black}
           color="#F5FEFD"
-          boxShadow="md"
+          boxShadow="0px 0px 2px 2px #FFFFFF" // white boxShadow
           borderRadius="md"
         >
           <form onSubmit={handleSubmit(onSubmit)}>
@@ -237,7 +237,7 @@ export const ConnectDashboard: FC<ConnectDashboardProps> = ({ adminWalletAddress
           </form>
         </Box>
         <Box display="flex" flexDirection="column" alignItems="center">
-          <Button type="submit" colorScheme="blue" mb={6} width="100%">
+          <Button type="submit" colorScheme="blue" mb={6} mt={1} width="100%">
             Submit
           </Button>
           <HStack>
