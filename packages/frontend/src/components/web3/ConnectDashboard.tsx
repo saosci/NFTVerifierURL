@@ -7,6 +7,7 @@ import {
   FormErrorMessage,
   FormLabel,
   HStack,
+  Icon,
   Input,
   Link,
   Menu,
@@ -15,6 +16,7 @@ import {
   MenuItem,
   MenuList,
   Text,
+  Tooltip,
   VStack,
 } from '@chakra-ui/react'
 import { env } from '@config/environment'
@@ -37,6 +39,7 @@ import { useForm } from 'react-hook-form'
 import { toast } from 'react-hot-toast'
 import { AiOutlineCheckCircle, AiOutlineDisconnect } from 'react-icons/ai'
 import { FiChevronDown, FiExternalLink } from 'react-icons/fi'
+import { IoIosInformationCircleOutline } from 'react-icons/io'
 import { black } from 'tailwindcss/colors'
 import 'twin.macro'
 
@@ -205,6 +208,9 @@ export const ConnectDashboard: FC<ConnectDashboardProps> = ({ adminWalletAddress
               isInvalid={!!errors.alreadyVerifiedDiscord}
             >
               <FormLabel>If you are already verified:</FormLabel>
+              <Tooltip label="This is where you put your verification info" fontSize="md">
+                <Icon as={IoIosInformationCircleOutline} w={5} h={5} ml={2} />
+              </Tooltip>
               <Input {...register('alreadyVerifiedDiscord')} />
               <FormErrorMessage>
                 {errors.alreadyVerifiedDiscord && 'This field is required'}
