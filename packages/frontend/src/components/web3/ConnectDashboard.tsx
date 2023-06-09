@@ -194,7 +194,7 @@ export const ConnectDashboard: FC<ConnectDashboardProps> = ({ adminWalletAddress
           p={4}
           backgroundColor={black}
           color="#F5FEFD"
-          boxShadow="0px .5px 1.5px 1px #FFFFFF" // white boxShadow
+          boxShadow="0px .5px 1.5px 1px #01EAC7" // white boxShadow
           borderRadius="md"
         >
           <form onSubmit={handleSubmit(onSubmit)}>
