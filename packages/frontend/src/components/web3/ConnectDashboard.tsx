@@ -9,7 +9,6 @@ import {
   FormLabel,
   HStack,
   Icon,
-  Input,
   Link,
   Menu,
   MenuButton,
@@ -17,6 +16,7 @@ import {
   MenuItem,
   MenuList,
   Text,
+  Textarea,
   Tooltip,
   VStack,
 } from '@chakra-ui/react'
@@ -219,7 +219,7 @@ export const ConnectDashboard: FC<ConnectDashboardProps> = ({ adminWalletAddress
                   <Icon as={IoIosInformationCircleOutline} w={5} h={5} ml={2} mt={-3} />
                 </Tooltip>
               </Flex>
-              <Input {...register('alreadyVerifiedDiscord')} />
+              <Textarea {...register('alreadyVerifiedDiscord')} maxLength={250} />
               <FormErrorMessage>
                 {errors.alreadyVerifiedDiscord && 'This field is required'}
               </FormErrorMessage>
@@ -243,7 +243,7 @@ export const ConnectDashboard: FC<ConnectDashboardProps> = ({ adminWalletAddress
                   <Icon as={IoIosInformationCircleOutline} w={5} h={5} ml={2} mt={-3} />
                 </Tooltip>
               </Flex>
-              <Input {...register('testing1')} />
+              <Textarea {...register('testing1')} maxLength={250} />
               <FormErrorMessage>{errors.testing1 && 'This field is required'}</FormErrorMessage>
             </FormControl>
 
@@ -265,7 +265,7 @@ export const ConnectDashboard: FC<ConnectDashboardProps> = ({ adminWalletAddress
                   <Icon as={IoIosInformationCircleOutline} w={5} h={5} ml={2} mt={-3} />
                 </Tooltip>
               </Flex>
-              <Input {...register('testing2')} />
+              <Textarea {...register('testing2')} maxLength={250} />
               <FormErrorMessage>{errors.testing2 && 'This field is required'}</FormErrorMessage>
             </FormControl>
           </form>
