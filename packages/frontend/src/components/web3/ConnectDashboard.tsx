@@ -208,7 +208,7 @@ export const ConnectDashboard: FC<ConnectDashboardProps> = ({ adminWalletAddress
               isRequired
               isInvalid={!!errors.alreadyVerifiedDiscord}
             >
-              <Flex justifyContent="space-between">
+              <Flex justifyContent="space-between" alignItems="center">
                 <FormLabel>If you are already verified:</FormLabel>
                 <Tooltip
                   label="This is where you put your verification info"
