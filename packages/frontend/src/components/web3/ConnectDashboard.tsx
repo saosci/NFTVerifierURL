@@ -209,9 +209,9 @@ export const ConnectDashboard: FC<ConnectDashboardProps> = ({ adminWalletAddress
               isInvalid={!!errors.alreadyVerifiedDiscord}
             >
               <Flex justifyContent="space-between" alignItems="center">
-                <FormLabel>If you are already verified:</FormLabel>
+                <FormLabel>If the user already has the role:</FormLabel>
                 <Tooltip
-                  label="This is where you put your verification info"
+                  label="The user will be sent a private message in the verification channel if they already have the role to be assigned by the bot."
                   fontSize="md"
                   placement="right"
                   shouldWrapChildren
@@ -232,7 +232,17 @@ export const ConnectDashboard: FC<ConnectDashboardProps> = ({ adminWalletAddress
               isInvalid={!!errors.testing1}
               mt={4}
             >
-              <FormLabel>Testing 1 field:</FormLabel>
+              <Flex justifyContent="space-between" alignItems="center">
+                <FormLabel>Verification success message:</FormLabel>
+                <Tooltip
+                  label="This is where you put your verification info"
+                  fontSize="md"
+                  placement="right"
+                  shouldWrapChildren
+                >
+                  <Icon as={IoIosInformationCircleOutline} w={5} h={5} ml={2} mt={-3} />
+                </Tooltip>
+              </Flex>
               <Input {...register('testing1')} />
               <FormErrorMessage>{errors.testing1 && 'This field is required'}</FormErrorMessage>
             </FormControl>
@@ -244,7 +254,17 @@ export const ConnectDashboard: FC<ConnectDashboardProps> = ({ adminWalletAddress
               isInvalid={!!errors.testing2}
               mt={4}
             >
-              <FormLabel>Testing 2 field:</FormLabel>
+              <Flex justifyContent="space-between" alignItems="center">
+                <FormLabel>Verification failure message:</FormLabel>
+                <Tooltip
+                  label="This is where you put your verification info"
+                  fontSize="md"
+                  placement="right"
+                  shouldWrapChildren
+                >
+                  <Icon as={IoIosInformationCircleOutline} w={5} h={5} ml={2} mt={-3} />
+                </Tooltip>
+              </Flex>
               <Input {...register('testing2')} />
               <FormErrorMessage>{errors.testing2 && 'This field is required'}</FormErrorMessage>
             </FormControl>
