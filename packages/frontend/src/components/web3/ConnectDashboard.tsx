@@ -243,7 +243,7 @@ export const ConnectDashboard: FC<ConnectDashboardProps> = ({ adminWalletAddress
               </Flex>
               <Textarea
                 {...register('alreadyVerifiedDiscord')}
-                defaultValue={initialValues.alreadyVerifiedDiscord}
+                value={initialValues.alreadyVerifiedDiscord}
                 maxLength={250}
               />
               <FormErrorMessage>
@@ -263,11 +263,7 @@ export const ConnectDashboard: FC<ConnectDashboardProps> = ({ adminWalletAddress
                   <Icon as={IoIosInformationCircleOutline} w={5} h={5} ml={2} mt={-3} />
                 </Tooltip>
               </Flex>
-              <Textarea
-                {...register('testing1')}
-                defaultValue={initialValues.testing1}
-                maxLength={250}
-              />
+              <Textarea {...register('testing1')} value={initialValues.testing1} maxLength={250} />
               <FormErrorMessage>{errors.testing1 && 'This field is required'}</FormErrorMessage>
             </FormControl>
 
@@ -283,11 +279,7 @@ export const ConnectDashboard: FC<ConnectDashboardProps> = ({ adminWalletAddress
                   <Icon as={IoIosInformationCircleOutline} w={5} h={5} ml={2} mt={-3} />
                 </Tooltip>
               </Flex>
-              <Textarea
-                {...register('testing2')}
-                defaultValue={initialValues.testing2}
-                maxLength={250}
-              />
+              <Textarea {...register('testing2')} value={initialValues.testing2} maxLength={250} />
               <FormErrorMessage>{errors.testing2 && 'This field is required'}</FormErrorMessage>
             </FormControl>
           </form>
