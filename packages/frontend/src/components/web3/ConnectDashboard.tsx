@@ -102,9 +102,9 @@ export const ConnectDashboard: FC<ConnectDashboardProps> = ({ adminWalletAddress
   // DEFAULT VALUES OF THE INPUT FIELDS
 
   const [initialValues, setInitialValues] = useState({
-    alreadyVerifiedDiscord: '',
-    testing1: '',
-    testing2: '',
+    message1: '',
+    message2: '',
+    message3: '',
   })
 
   useEffect(() => {
@@ -119,9 +119,9 @@ export const ConnectDashboard: FC<ConnectDashboardProps> = ({ adminWalletAddress
 
   // WE'RE SHOWING WHAT'S IN THE FORM
   interface FormData {
-    alreadyVerifiedDiscord: string
-    testing1: string
-    testing2: string
+    message1: string
+    message2: string
+    message3: string
   }
 
   const {
@@ -140,9 +140,9 @@ export const ConnectDashboard: FC<ConnectDashboardProps> = ({ adminWalletAddress
           'Content-Type': 'application/json',
         },
         body: JSON.stringify({
-          alreadyVerifiedDiscord: data.alreadyVerifiedDiscord,
-          testing1: data.testing1,
-          testing2: data.testing2,
+          message1: data.message1,
+          message2: data.message2,
+          message3: data.message3,
         }),
       })
 
@@ -225,11 +225,7 @@ export const ConnectDashboard: FC<ConnectDashboardProps> = ({ adminWalletAddress
           borderRadius="md"
         >
           <form onSubmit={handleSubmit(onSubmit)}>
-            <FormControl
-              color="#F5FEFD"
-              id="alreadyVerifiedDiscord"
-              isInvalid={!!errors.alreadyVerifiedDiscord}
-            >
+            <FormControl color="#F5FEFD" id="message1" isInvalid={!!errors.message1}>
               <Flex justifyContent="space-between" alignItems="center">
                 <FormLabel>If the user already has the role:</FormLabel>
                 <Tooltip
@@ -242,22 +238,20 @@ export const ConnectDashboard: FC<ConnectDashboardProps> = ({ adminWalletAddress
                 </Tooltip>
               </Flex>
               <Textarea
-                {...register('alreadyVerifiedDiscord')}
-                value={initialValues.alreadyVerifiedDiscord}
+                {...register('message1')}
+                value={initialValues.message1}
                 onChange={(e) =>
                   setInitialValues((prevValues) => ({
                     ...prevValues,
-                    alreadyVerifiedDiscord: e.target.value,
+                    message1: e.target.value,
                   }))
                 }
                 maxLength={250}
               />
-              <FormErrorMessage>
-                {errors.alreadyVerifiedDiscord && 'This field is required'}
-              </FormErrorMessage>
+              <FormErrorMessage>{errors.message1 && 'This field is required'}</FormErrorMessage>
             </FormControl>
 
-            <FormControl color="#F5FEFD" id="testing1" isInvalid={!!errors.testing1} mt={4}>
+            <FormControl color="#F5FEFD" id="message2" isInvalid={!!errors.message2} mt={4}>
               <Flex justifyContent="space-between" alignItems="center">
                 <FormLabel>Verification success message:</FormLabel>
                 <Tooltip
@@ -270,20 +264,20 @@ export const ConnectDashboard: FC<ConnectDashboardProps> = ({ adminWalletAddress
                 </Tooltip>
               </Flex>
               <Textarea
-                {...register('testing1')}
-                value={initialValues.testing1}
+                {...register('message2')}
+                value={initialValues.message2}
                 onChange={(e) =>
                   setInitialValues((prevValues) => ({
                     ...prevValues,
-                    testing1: e.target.value,
+                    message2: e.target.value,
                   }))
                 }
                 maxLength={250}
               />
-              <FormErrorMessage>{errors.testing1 && 'This field is required'}</FormErrorMessage>
+              <FormErrorMessage>{errors.message2 && 'This field is required'}</FormErrorMessage>
             </FormControl>
 
-            <FormControl color="#F5FEFD" id="testing2" isInvalid={!!errors.testing2} mt={4}>
+            <FormControl color="#F5FEFD" id="message3" isInvalid={!!errors.message3} mt={4}>
               <Flex justifyContent="space-between" alignItems="center">
                 <FormLabel>Verification failure message:</FormLabel>
                 <Tooltip
@@ -296,17 +290,17 @@ export const ConnectDashboard: FC<ConnectDashboardProps> = ({ adminWalletAddress
                 </Tooltip>
               </Flex>
               <Textarea
-                {...register('testing2')}
-                value={initialValues.testing2}
+                {...register('message3')}
+                value={initialValues.message3}
                 onChange={(e) =>
                   setInitialValues((prevValues) => ({
                     ...prevValues,
-                    testing2: e.target.value,
+                    message3: e.target.value,
                   }))
                 }
                 maxLength={250}
               />
-              <FormErrorMessage>{errors.testing2 && 'This field is required'}</FormErrorMessage>
+              <FormErrorMessage>{errors.message3 && 'This field is required'}</FormErrorMessage>
             </FormControl>
             <Button type="submit" colorScheme="blue" mb={2} mt={4} width="100%">
               Submit
