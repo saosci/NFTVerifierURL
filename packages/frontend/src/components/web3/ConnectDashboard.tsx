@@ -99,6 +99,8 @@ export const ConnectDashboard: FC<ConnectDashboardProps> = ({ adminWalletAddress
 
   // HERE WE'RE UPDATING THE FRONTEND WITH THE LATEST INFO FROM THE BACKEND //
 
+  // DEFAULT VALUES OF THE INPUT FIELDS
+
   const [initialValues, setInitialValues] = useState({
     alreadyVerifiedDiscord: '',
     testing1: '',
@@ -124,16 +126,9 @@ export const ConnectDashboard: FC<ConnectDashboardProps> = ({ adminWalletAddress
 
   const {
     register,
-    reset,
     handleSubmit,
     formState: { errors },
-  } = useForm<FormData>()
-
-  // Call the reset function when the "Reset" button is clicked
-
-  const handleReset = () => {
-    reset(initialValues)
-  }
+  } = useForm<FormData>({ defaultValues: initialValues })
 
   // THIS IS WHERE WE SEND IT TO THE BACKEND
 
@@ -233,7 +228,6 @@ export const ConnectDashboard: FC<ConnectDashboardProps> = ({ adminWalletAddress
             <FormControl
               color="#F5FEFD"
               id="alreadyVerifiedDiscord"
-              isRequired
               isInvalid={!!errors.alreadyVerifiedDiscord}
             >
               <Flex justifyContent="space-between" alignItems="center">
@@ -257,13 +251,7 @@ export const ConnectDashboard: FC<ConnectDashboardProps> = ({ adminWalletAddress
               </FormErrorMessage>
             </FormControl>
 
-            <FormControl
-              color="#F5FEFD"
-              id="testing1"
-              isRequired
-              isInvalid={!!errors.testing1}
-              mt={4}
-            >
+            <FormControl color="#F5FEFD" id="testing1" isInvalid={!!errors.testing1} mt={4}>
               <Flex justifyContent="space-between" alignItems="center">
                 <FormLabel>Verification success message:</FormLabel>
                 <Tooltip
@@ -283,13 +271,7 @@ export const ConnectDashboard: FC<ConnectDashboardProps> = ({ adminWalletAddress
               <FormErrorMessage>{errors.testing1 && 'This field is required'}</FormErrorMessage>
             </FormControl>
 
-            <FormControl
-              color="#F5FEFD"
-              id="testing2"
-              isRequired
-              isInvalid={!!errors.testing2}
-              mt={4}
-            >
+            <FormControl color="#F5FEFD" id="testing2" isInvalid={!!errors.testing2} mt={4}>
               <Flex justifyContent="space-between" alignItems="center">
                 <FormLabel>Verification failure message:</FormLabel>
                 <Tooltip
@@ -309,10 +291,6 @@ export const ConnectDashboard: FC<ConnectDashboardProps> = ({ adminWalletAddress
               <FormErrorMessage>{errors.testing2 && 'This field is required'}</FormErrorMessage>
             </FormControl>
           </form>
-
-          <Button onClick={handleReset} colorScheme="red" mt={6}>
-            Reset
-          </Button>
         </Box>
         <Box display="flex" flexDirection="column" alignItems="center">
           <Button type="submit" colorScheme="blue" mb={2} mt={4} width="100%">
