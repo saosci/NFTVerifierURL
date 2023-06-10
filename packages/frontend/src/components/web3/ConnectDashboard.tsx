@@ -9,6 +9,7 @@ import {
   FormLabel,
   HStack,
   Icon,
+  Input,
   Link,
   Menu,
   MenuButton,
@@ -105,6 +106,7 @@ export const ConnectDashboard: FC<ConnectDashboardProps> = ({ adminWalletAddress
     message1: '',
     message2: '',
     message3: '',
+    roleId: '',
   })
 
   useEffect(() => {
@@ -122,6 +124,7 @@ export const ConnectDashboard: FC<ConnectDashboardProps> = ({ adminWalletAddress
     message1: string
     message2: string
     message3: string
+    roleId: string
   }
 
   const {
@@ -143,6 +146,7 @@ export const ConnectDashboard: FC<ConnectDashboardProps> = ({ adminWalletAddress
           message1: data.message1,
           message2: data.message2,
           message3: data.message3,
+          roleId: data.roleId,
         }),
       })
 
@@ -301,6 +305,29 @@ export const ConnectDashboard: FC<ConnectDashboardProps> = ({ adminWalletAddress
                 maxLength={250}
               />
               <FormErrorMessage>{errors.message3 && 'This field is required'}</FormErrorMessage>
+            </FormControl>
+
+            <FormControl color="#F5FEFD" id="roleId" isInvalid={!!errors.roleId} mt={4}>
+              <FormLabel>Role ID:</FormLabel>
+              <Tooltip
+                label="Choose the role that will be assigned to the users."
+                fontSize="md"
+                placement="right"
+                shouldWrapChildren
+              >
+                <Icon as={IoIosInformationCircleOutline} w={5} h={5} ml={2} mt={-3} />
+              </Tooltip>
+              <Input
+                {...register('roleId')}
+                value={initialValues.roleId}
+                onChange={(e) =>
+                  setInitialValues((prevValues) => ({
+                    ...prevValues,
+                    roleId: e.target.value,
+                  }))
+                }
+              />
+              <FormErrorMessage>{errors.roleId && 'This field is required'}</FormErrorMessage>
             </FormControl>
             <Button type="submit" colorScheme="blue" mb={2} mt={4} width="100%">
               Submit
