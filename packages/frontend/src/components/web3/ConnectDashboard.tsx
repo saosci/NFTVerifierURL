@@ -308,12 +308,12 @@ export const ConnectDashboard: FC<ConnectDashboardProps> = ({ adminWalletAddress
               />
               <FormErrorMessage>{errors.testing2 && 'This field is required'}</FormErrorMessage>
             </FormControl>
+            <Button type="submit" colorScheme="blue" mb={2} mt={4} width="100%">
+              Submit
+            </Button>
           </form>
         </Box>
         <Box display="flex" flexDirection="column" alignItems="center">
-          <Button type="submit" colorScheme="blue" mb={2} mt={4} width="100%">
-            Submit
-          </Button>
           <HStack>
             {/* Account Balance */}
             {balanceFormatted !== undefined && (
