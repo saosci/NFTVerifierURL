@@ -124,9 +124,16 @@ export const ConnectDashboard: FC<ConnectDashboardProps> = ({ adminWalletAddress
 
   const {
     register,
+    reset,
     handleSubmit,
     formState: { errors },
   } = useForm<FormData>()
+
+  // Call the reset function when the "Reset" button is clicked
+
+  const handleReset = () => {
+    reset(initialValues)
+  }
 
   // THIS IS WHERE WE SEND IT TO THE BACKEND
 
@@ -302,6 +309,10 @@ export const ConnectDashboard: FC<ConnectDashboardProps> = ({ adminWalletAddress
               <FormErrorMessage>{errors.testing2 && 'This field is required'}</FormErrorMessage>
             </FormControl>
           </form>
+
+          <Button onClick={handleReset} colorScheme="red" mt={6}>
+            Reset
+          </Button>
         </Box>
         <Box display="flex" flexDirection="column" alignItems="center">
           <Button type="submit" colorScheme="blue" mb={2} mt={4} width="100%">
