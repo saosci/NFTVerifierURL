@@ -24,6 +24,7 @@ const DashboardPage: NextPage = () => {
   }, [guildId])
 
   console.log('admin wallets', walletAddresses)
+  console.log('guild ID', guildId)
 
   return (
     <CenterBody tw="mt-20 mb-10 px-5">
