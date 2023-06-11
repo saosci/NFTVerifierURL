@@ -222,7 +222,11 @@ export const ConnectDashboard: FC<ConnectDashboardProps> = ({ adminWalletAddress
     )
 
   // Account Menu & Disconnect Button
-  if (adminWalletAddresses?.includes(activeAccount?.address)) {
+  if (
+    adminWalletAddresses
+      ?.map((address) => address.trim().toLowerCase())
+      .includes(activeAccount?.address.trim().toLowerCase())
+  ) {
     console.log('Active account is admin. Showing admin dashboard content.')
     // Display admin dashboard content
     return (
