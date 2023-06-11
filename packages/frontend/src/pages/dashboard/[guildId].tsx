@@ -15,16 +15,22 @@ const DashboardPage: NextPage = () => {
 
   useEffect(() => {
     const fetchWalletAddresses = async () => {
-      const response = await fetch(`https://op2.app/wallets/${guildId}`)
-      const data = await response.json()
-      setWalletAddresses(data.walletAddresses)
+      try {
+        const response = await fetch(`https://op2.app/wallets/${guildId}`)
+        if (!response.ok) {
+          throw new Error(`HTTP error! status: ${response.status}`)
+        }
+        const data = await response.json()
+        setWalletAddresses(data.walletAddresses)
+      } catch (error) {
+        console.error('Error fetching wallet addresses:', error)
+      }
     }
 
     fetchWalletAddresses()
   }, [guildId])
 
   console.log('admin wallets', walletAddresses)
-  console.log('guild ID', guildId)
 
   return (
     <CenterBody tw="mt-20 mb-10 px-5">
