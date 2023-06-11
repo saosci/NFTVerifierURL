@@ -77,10 +77,10 @@ export const AccountName: FC<AccountNameProps> = ({ account, ...rest }) => {
 }
 
 export interface ConnectDashboardProps {
-  adminWalletAddress?: string
+  adminWalletAddresses?: string[]
 }
 export interface ConnectDashboardProps {}
-export const ConnectDashboard: FC<ConnectDashboardProps> = ({ adminWalletAddress }) => {
+export const ConnectDashboard: FC<ConnectDashboardProps> = ({ adminWalletAddresses }) => {
   const router = useRouter()
   const { guildId } = router.query
   const {
@@ -219,7 +219,7 @@ export const ConnectDashboard: FC<ConnectDashboardProps> = ({ adminWalletAddress
     )
 
   // Account Menu & Disconnect Button
-  if (activeAccount?.address === adminWalletAddress) {
+  if (adminWalletAddresses?.includes(activeAccount?.address)) {
     console.log('Active account is admin. Showing admin dashboard content.')
     // Display admin dashboard content
     return (
