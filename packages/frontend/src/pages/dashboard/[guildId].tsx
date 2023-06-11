@@ -23,6 +23,8 @@ const DashboardPage: NextPage = () => {
     fetchWalletAddresses()
   }, [guildId])
 
+  console.log('admin wallets', walletAddresses)
+
   return (
     <CenterBody tw="mt-20 mb-10 px-5">
       {/* Connect Wallet Button */}

@@ -79,6 +79,7 @@ export const AccountName: FC<AccountNameProps> = ({ account, ...rest }) => {
 export interface ConnectDashboardProps {
   adminWalletAddresses?: string[]
 }
+
 export interface ConnectDashboardProps {}
 export const ConnectDashboard: FC<ConnectDashboardProps> = ({ adminWalletAddresses }) => {
   const router = useRouter()
@@ -102,6 +103,8 @@ export const ConnectDashboard: FC<ConnectDashboardProps> = ({ adminWalletAddress
   const isSSR = useIsSSR()
 
   // HERE WE'RE UPDATING THE FRONTEND WITH THE LATEST INFO FROM THE BACKEND //
+
+  console.log('admin logs', adminWalletAddresses)
 
   // DEFAULT VALUES OF THE INPUT FIELDS
 
