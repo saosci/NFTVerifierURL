@@ -35,6 +35,7 @@ import {
 import { truncateHash } from '@utils/truncateHash'
 import { useIsSSR } from '@utils/useIsSSR'
 import Image from 'next/image'
+import { useRouter } from 'next/router'
 import aznsIconSvg from 'public/icons/azns-icon.svg'
 import { FC, useEffect, useState } from 'react'
 import { useForm } from 'react-hook-form'
@@ -80,6 +81,8 @@ export interface ConnectDashboardProps {
 }
 export interface ConnectDashboardProps {}
 export const ConnectDashboard: FC<ConnectDashboardProps> = ({ adminWalletAddress }) => {
+  const router = useRouter()
+  const { guildId } = router.query
   const {
     activeChain,
     switchActiveChain,
@@ -147,6 +150,7 @@ export const ConnectDashboard: FC<ConnectDashboardProps> = ({ adminWalletAddress
           message2: data.message2,
           message3: data.message3,
           roleId: data.roleId,
+          guildId,
         }),
       })
 

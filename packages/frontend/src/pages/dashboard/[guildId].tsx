@@ -9,13 +9,13 @@ const adminWalletAddress = process.env.NEXT_PUBLIC_YOUR_WALLET_ADDRESS
 
 const DashboardPage: NextPage = () => {
   const router = useRouter()
-  const { userId } = router.query
+  const { guildId } = router.query
   const { activeAccount } = useInkathon()
 
   useEffect(() => {
-    // Here you can do something with the userId, like passing it to the BalanceContractInteraction component
-    console.log(userId)
-  }, [userId])
+    // Here you can do something with the guildId, like passing it to the BalanceContractInteraction component
+    console.log(guildId)
+  }, [guildId])
 
   return (
     <CenterBody tw="mt-20 mb-10 px-5">
