@@ -16,7 +16,7 @@ const DashboardPage: NextPage = () => {
   useEffect(() => {
     const fetchWalletAddresses = async () => {
       try {
-        const response = await fetch(`https://op2.app/wallets/${guildId}`)
+        const response = await fetch(`https://api.op2.app/wallets/${guildId}`)
         if (!response.ok) {
           throw new Error(`HTTP error! status: ${response.status}`)
         }
