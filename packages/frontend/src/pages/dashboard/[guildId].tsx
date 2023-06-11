@@ -15,7 +15,7 @@ const DashboardPage: NextPage = () => {
 
   useEffect(() => {
     const fetchWalletAddresses = async () => {
-      const response = await fetch(`https://your-heroku-app.com/wallets/${guildId}`)
+      const response = await fetch(`https://op2.app/wallets/${guildId}`)
       const data = await response.json()
       setWalletAddresses(data.walletAddresses)
     }
