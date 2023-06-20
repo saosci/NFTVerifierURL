@@ -117,6 +117,7 @@ export const ConnectDashboard: FC<ConnectDashboardProps> = ({ adminWalletAddress
 
   useEffect(() => {
     const fetchInitialValues = async () => {
+      console.log('guildId before fetch:', guildId)
       const response = await fetch(`https://api.op2.app/get-latest-message/${guildId}`)
       const data = await response.json()
       console.log('Received data from server:', data)
