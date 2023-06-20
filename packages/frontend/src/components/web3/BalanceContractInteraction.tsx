@@ -13,7 +13,7 @@ import 'twin.macro'
 
 export const BalanceContractInteraction: FC = () => {
   const router = useRouter()
-  const { userId } = router.query
+  const { userId, platform, guildId } = router.query
   console.log('userId:', userId) // Log the userId
   const { api, activeAccount } = useInkathon()
   const { contract, address: contractAddress } = useRegisteredContract(ContractIds.Greeter)
@@ -21,8 +21,6 @@ export const BalanceContractInteraction: FC = () => {
   const [fetchIsLoading, setFetchIsLoading] = useState<boolean>()
   const [tokens, setTokens] = useState<any>()
   const [tokenUri, setTokenUri] = useState<string>()
-  // Extract the platform from the URL
-  const { platform } = router.query
 
   // Fetch Balance and Tokens
   const fetchBalanceAndTokens = async () => {
@@ -78,6 +76,7 @@ export const BalanceContractInteraction: FC = () => {
           body: JSON.stringify({
             userId: userId, // The Discord or Telegram user ID from the URL
             verificationStatus: verificationStatus,
+            guildId: guildId,
           }),
         })
           .then((response) => {
