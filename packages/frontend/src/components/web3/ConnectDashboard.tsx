@@ -345,7 +345,7 @@ export const ConnectDashboard: FC<ConnectDashboardProps> = ({ adminWalletAddress
             </Button>
           </form>
         </Box>
-        <Box display="flex" flexDirection="column" alignItems="center">
+        <Box display="flex" flexDirection="column" alignItems="center" mt={4}>
           <HStack>
             {/* Account Balance */}
             {balanceFormatted !== undefined && (
