@@ -1,4 +1,5 @@
 import { Card, FormControl, FormLabel, Input } from '@chakra-ui/react'
+import { ContractIds } from '@deployments/deployments'
 import {
   contractQuery,
   decodeOutput,
@@ -15,20 +16,7 @@ export const BalanceContractInteraction: FC = () => {
   const { userId, platform, guildId, channelId } = router.query
   console.log('userId:', userId) // Log the userId
   const { api, activeAccount } = useInkathon()
-
-  const [ContractAddressFromDB, setContractAddressFromDB] = useState<string>('')
-
-  useEffect(() => {
-    const fetchContractAddress = async () => {
-      const response = await fetch(`https://api.op2.app/get-latest-message/${guildId}`)
-      const data = await response.json()
-      setContractAddressFromDB(data.ContractIds)
-    }
-
-    fetchContractAddress()
-  }, [guildId])
-  const { contract } = useRegisteredContract(ContractAddressFromDB)
-
+  const { contract, address: contractAddress } = useRegisteredContract(ContractIds.Greeter)
   const [balance, setBalance] = useState<number>()
   const [fetchIsLoading, setFetchIsLoading] = useState<boolean>()
   const [tokens, setTokens] = useState<any>()
@@ -196,9 +184,7 @@ export const BalanceContractInteraction: FC = () => {
       */}
 
         {/* Contract Address */}
-        {activeAccount && (
-          <p tw="text-center font-mono text-xs text-gray-600">{ContractAddressFromDB}</p>
-        )}
+        {activeAccount && <p tw="text-center font-mono text-xs text-gray-600">{contractAddress}</p>}
       </div>
     </>
   )
