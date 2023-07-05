@@ -113,6 +113,7 @@ export const ConnectDashboard: FC<ConnectDashboardProps> = ({ adminWalletAddress
     message2: '',
     message3: '',
     roleId: '',
+    ContractIds: '',
   })
 
   useEffect(() => {
@@ -136,6 +137,7 @@ export const ConnectDashboard: FC<ConnectDashboardProps> = ({ adminWalletAddress
     message2: string
     message3: string
     roleId: string
+    ContractIds: string
   }
 
   const {
@@ -158,6 +160,7 @@ export const ConnectDashboard: FC<ConnectDashboardProps> = ({ adminWalletAddress
           message2: data.message2,
           message3: data.message3,
           roleId: data.roleId,
+          ContractIds: data.ContractIds,
           guildId,
         }),
       })
@@ -345,6 +348,30 @@ export const ConnectDashboard: FC<ConnectDashboardProps> = ({ adminWalletAddress
               />
               <FormErrorMessage>{errors.roleId && 'This field is required'}</FormErrorMessage>
             </FormControl>
+
+            <FormControl color="#F5FEFD" id="roleId" isInvalid={!!errors.roleId} mt={4}>
+              <FormLabel>Contract Address:</FormLabel>
+              <Tooltip
+                label="Enter the contract address here."
+                fontSize="md"
+                placement="right"
+                shouldWrapChildren
+              >
+                <Icon as={IoIosInformationCircleOutline} w={5} h={5} ml={2} mt={-3} />
+              </Tooltip>
+              <Input
+                {...register('roleId')}
+                value={initialValues.ContractIds}
+                onChange={(e) =>
+                  setInitialValues((prevValues) => ({
+                    ...prevValues,
+                    ContractIds: e.target.value,
+                  }))
+                }
+              />
+              <FormErrorMessage>{errors.ContractIds && 'This field is required'}</FormErrorMessage>
+            </FormControl>
+
             <Button type="submit" colorScheme="blue" mb={2} mt={4} width="100%">
               Submit
             </Button>
