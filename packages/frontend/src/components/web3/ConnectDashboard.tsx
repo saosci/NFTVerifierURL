@@ -349,7 +349,7 @@ export const ConnectDashboard: FC<ConnectDashboardProps> = ({ adminWalletAddress
               <FormErrorMessage>{errors.roleId && 'This field is required'}</FormErrorMessage>
             </FormControl>
 
-            <FormControl color="#F5FEFD" id="roleId" isInvalid={!!errors.roleId} mt={4}>
+            <FormControl color="#F5FEFD" id="ContractIds" isInvalid={!!errors.ContractIds} mt={4}>
               <FormLabel>Contract Address:</FormLabel>
               <Tooltip
                 label="Enter the contract address here."
@@ -360,7 +360,7 @@ export const ConnectDashboard: FC<ConnectDashboardProps> = ({ adminWalletAddress
                 <Icon as={IoIosInformationCircleOutline} w={5} h={5} ml={2} mt={-3} />
               </Tooltip>
               <Input
-                {...register('roleId')}
+                {...register('ContractIds')}
                 value={initialValues.ContractIds}
                 onChange={(e) =>
                   setInitialValues((prevValues) => ({
