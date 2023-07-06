@@ -7,15 +7,20 @@ export enum ContractIds {
 
 export const getDeployments = async (): Promise<SubstrateDeployment[]> => {
   const networks = env.supportedChains
-  const deployments = networks
-    .map(async (network) => [
-      {
-        contractId: ContractIds.Greeter,
+  const contracts = Object.keys(env.nftContracts)
+  const deployments = []
+
+  for (const network of networks) {
+    for (const contract of contracts) {
+      const deployment = {
+        contractId: contract,
         networkId: network,
         abi: await import(`@inkathon/contracts/deployments/greeter/metadata.json`),
-        address: (await import(`@inkathon/contracts/deployments/greeter/${network}.ts`)).address,
-      },
-    ])
-    .reduce(async (acc, curr) => [...(await acc), ...(await curr)], [] as any)
+        address: env.nftContracts[contract as keyof typeof env.nftContracts], // Assert `contract` as a key of `env.nftContracts`
+      }
+      deployments.push(deployment)
+    }
+  }
+
   return deployments
 }
