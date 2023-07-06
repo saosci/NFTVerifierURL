@@ -16,7 +16,7 @@ export const getDeployments = async (): Promise<SubstrateDeployment[]> => {
         contractId: contract,
         networkId: network,
         abi: await import(`@inkathon/contracts/deployments/greeter/metadata.json`),
-        address: env.nftContracts[contract as keyof typeof env.nftContracts], // Assert `contract` as a key of `env.nftContracts`
+        address: '5DMq6XZMLRLB3UjTktP5miotabFrjCss22TtrJhVAsRwBZfJ', // Assert `contract` as a key of `env.nftContracts`
       }
       deployments.push(deployment)
     }
