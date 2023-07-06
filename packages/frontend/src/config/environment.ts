@@ -13,4 +13,8 @@ export const env = {
 
   defaultChain: process.env.NEXT_PUBLIC_DEFAULT_CHAIN!,
   supportedChains: getSupportedChains(),
+
+  nftContracts: {
+    officeParty: '5DMq6XZMLRLB3UjTktP5miotabFrjCss22TtrJhVAsRwBZfJ',
+  },
 }
