@@ -16,8 +16,27 @@ export const BalanceContractInteraction: FC = () => {
   const { userId, platform, guildId, channelId } = router.query
   console.log('userId:', userId) // Log the userId
   const { api, activeAccount } = useInkathon()
+  const [adminContractAddress, setAdminContractAddress] = useState<string>() // Declare the state variable here
+  useEffect(() => {
+    const fetchAdminContractAddress = async () => {
+      const response = await fetch(`https://api.op2.app/get-latest-message/${guildId}`)
+      const data = await response.json()
+      setAdminContractAddress(data.ContractIds)
+    }
+
+    fetchAdminContractAddress()
+  }, [guildId])
+  console.log('adming contract address:', adminContractAddress)
+
   const { contract, address: contractAddress } = useRegisteredContract(ContractIds.Greeter)
   console.log(contract, contractAddress)
+
+  useEffect(() => {
+    if (contractAddress !== adminContractAddress) {
+      console.error('The contract address does not match the admin set contract address.')
+      // Handle this error appropriately
+    }
+  }, [contractAddress, adminContractAddress])
   const [balance, setBalance] = useState<number>()
   const [fetchIsLoading, setFetchIsLoading] = useState<boolean>()
   const [tokens, setTokens] = useState<any>()
