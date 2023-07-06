@@ -15,6 +15,6 @@ export const env = {
   supportedChains: getSupportedChains(),
 
   nftContracts: {
-    officeParty: '5DMq6XZMLRLB3UjTktP5miotabFrjCss22TtrJhVAsRwBZfJ',
+    address: '5DMq6XZMLRLB3UjTktP5miotabFrjCss22TtrJhVAsRwBZfJ',
   },
 }
