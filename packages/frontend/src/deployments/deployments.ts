@@ -13,7 +13,7 @@ export const getDeployments = async (): Promise<SubstrateDeployment[]> => {
         contractId: ContractIds.Greeter,
         networkId: network,
         abi: await import(`@inkathon/contracts/deployments/greeter/metadata.json`),
-        address: '5DMq6XZMLRLB3UjTktP5miotabFrjCss22TtrJhVAsRwBZfJ',
+        address: (await import(`@inkathon/contracts/deployments/greeter/${network}.ts`)).address,
       },
     ])
     .reduce(async (acc, curr) => [...(await acc), ...(await curr)], [] as any)
