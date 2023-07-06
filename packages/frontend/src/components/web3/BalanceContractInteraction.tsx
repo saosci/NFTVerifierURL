@@ -1,6 +1,8 @@
 import { Card, FormControl, FormLabel, Input } from '@chakra-ui/react'
+import { env } from '@config/environment'
 import { ContractIds } from '@deployments/deployments'
 import {
+  SubstrateDeployment,
   contractQuery,
   decodeOutput,
   useInkathon,
@@ -14,9 +16,10 @@ import 'twin.macro'
 export const BalanceContractInteraction: FC = () => {
   const router = useRouter()
   const { userId, platform, guildId, channelId } = router.query
-  console.log('userId:', userId) // Log the userId
   const { api, activeAccount } = useInkathon()
-  const [adminContractAddress, setAdminContractAddress] = useState<string>() // Declare the state variable here
+  const [adminContractAddress, setAdminContractAddress] = useState<string>()
+  const [deployment, setDeployment] = useState<SubstrateDeployment>()
+
   useEffect(() => {
     const fetchAdminContractAddress = async () => {
       const response = await fetch(`https://api.op2.app/get-latest-message/${guildId}`)
@@ -26,17 +29,36 @@ export const BalanceContractInteraction: FC = () => {
 
     fetchAdminContractAddress()
   }, [guildId])
-  console.log('adming contract address:', adminContractAddress)
-
-  const { contract, address: contractAddress } = useRegisteredContract(ContractIds.Greeter)
-  console.log(contract, contractAddress)
 
   useEffect(() => {
-    if (contractAddress !== adminContractAddress) {
-      console.error('The contract address does not match the admin set contract address.')
-      // Handle this error appropriately
+    const getDeployment = async () => {
+      const networks = env.supportedChains
+      const deployments = []
+
+      for (const network of networks) {
+        if (adminContractAddress) {
+          const deployment = {
+            contractId: ContractIds.Greeter,
+            networkId: network,
+            abi: await import(`@inkathon/contracts/deployments/greeter/metadata.json`),
+            address: adminContractAddress,
+          }
+          deployments.push(deployment)
+        } else {
+          console.error('Admin contract address is undefined.')
+        }
+      }
+
+      setDeployment(deployments[0]) // Assuming there's only one network
     }
-  }, [contractAddress, adminContractAddress])
+
+    if (adminContractAddress) {
+      getDeployment()
+    }
+  }, [adminContractAddress]) // No need to destructure adminContractAddress here
+
+  const { contract, address: contractAddress } = useRegisteredContract(ContractIds.Greeter)
+
   const [balance, setBalance] = useState<number>()
   const [fetchIsLoading, setFetchIsLoading] = useState<boolean>()
   const [tokens, setTokens] = useState<any>()
