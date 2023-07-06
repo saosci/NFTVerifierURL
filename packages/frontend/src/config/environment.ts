@@ -16,5 +16,7 @@ export const env = {
 
   nftContracts: {
     officeParty: '5DMq6XZMLRLB3UjTktP5miotabFrjCss22TtrJhVAsRwBZfJ',
+    gmMugs: '5CRBAgkU7FbZQDJMw585Ftrve1wER2Zay7UxuS5BuchLVAur',
+    azeroPunks: '5E7HFbvv7o4zFpJxnUsJF5CNktew1T6nh3gctbkSTWGAeiMT',
   },
 }
