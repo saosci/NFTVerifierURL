@@ -42,6 +42,7 @@ function MyApp({ Component, pageProps }: AppProps) {
       fetchContractAddress()
     }
   }, [guildId])
+  console.log('fetched contract address:', contractAddress)
 
   useEffect(() => {
     if (contractAddress) {
