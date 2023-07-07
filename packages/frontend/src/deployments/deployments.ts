@@ -5,7 +5,7 @@ export enum ContractIds {
   Greeter = 'launchpad_psp34_nft_standard',
 }
 
-export const getDeployments = async (contractAddress: string): Promise<SubstrateDeployment[]> => {
+export const getDeployments = async (ContractAddress: string): Promise<SubstrateDeployment[]> => {
   const networks = env.supportedChains
   const deployments = networks
     .map(async (network) => [
@@ -13,7 +13,7 @@ export const getDeployments = async (contractAddress: string): Promise<Substrate
         contractId: ContractIds.Greeter,
         networkId: network,
         abi: await import(`@inkathon/contracts/deployments/greeter/metadata.json`),
-        address: contractAddress,
+        address: ContractAddress,
       },
     ])
     .reduce(async (acc, curr) => [...(await acc), ...(await curr)], [] as any)

@@ -17,6 +17,7 @@ export const BalanceContractInteraction: FC = () => {
   console.log('userId:', userId) // Log the userId
   const { api, activeAccount } = useInkathon()
   const { contract, address: contractAddress } = useRegisteredContract(ContractIds.Greeter)
+  console.log('contractAddress:', contractAddress)
   const [balance, setBalance] = useState<number>()
   const [fetchIsLoading, setFetchIsLoading] = useState<boolean>()
   const [tokens, setTokens] = useState<any>()
