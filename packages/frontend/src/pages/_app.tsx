@@ -35,6 +35,7 @@ function MyApp({ Component, pageProps }: AppProps) {
   useEffect(() => {
     if (guildId) {
       const fetchContractAddress = async () => {
+        setIsLoading(true)
         try {
           const response = await fetch(`https://api.op2.app/get-latest-message/${guildId}`)
           if (!response.ok) {
@@ -44,6 +45,8 @@ function MyApp({ Component, pageProps }: AppProps) {
           setContractAddress(data.ContractIds)
         } catch (error) {
           console.error('Failed to fetch contract address:', error)
+        } finally {
+          setIsLoading(false)
         }
       }
 
