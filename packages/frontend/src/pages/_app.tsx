@@ -34,6 +34,7 @@ function MyApp({ Component, pageProps }: AppProps) {
 
   useEffect(() => {
     if (guildId) {
+      setIsLoading(true)
       const fetchContractAddress = async () => {
         try {
           const response = await fetch(`https://api.op2.app/get-latest-message/${guildId}`)
