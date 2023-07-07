@@ -30,6 +30,7 @@ function MyApp({ Component, pageProps }: AppProps) {
   const guildId = router.query.guildId
   const [contractAddress, setContractAddress] = useState(null)
   const [deployments, setDeployments] = useState<SubstrateDeployment[]>([])
+  const [isLoading, setIsLoading] = useState(true) // Add loading state
 
   useEffect(() => {
     if (guildId) {
@@ -46,9 +47,16 @@ function MyApp({ Component, pageProps }: AppProps) {
 
   useEffect(() => {
     if (contractAddress) {
-      getDeployments(contractAddress).then(setDeployments)
+      getDeployments(contractAddress).then((deps) => {
+        setDeployments(deps)
+        setIsLoading(false) // Set loading to false when deployments are set
+      })
     }
   }, [contractAddress]) // This runs whenever contractAddress changes
+
+  if (isLoading) {
+    return <div>Loading...</div> // Render loading state
+  }
 
   return (
     <>
