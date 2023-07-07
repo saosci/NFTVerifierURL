@@ -35,34 +35,24 @@ function MyApp({ Component, pageProps }: AppProps) {
   useEffect(() => {
     if (guildId) {
       const fetchContractAddress = async () => {
-        try {
-          const response = await fetch(`https://api.op2.app/get-latest-message/${guildId}`)
-          if (!response.ok) {
-            throw new Error(`HTTP error! status: ${response.status}`)
-          }
-          const data = await response.json()
-          setContractAddress(data.ContractIds)
-        } catch (error) {
-          console.error('Failed to fetch contract address:', error)
-        }
+        const response = await fetch(`https://api.op2.app/get-latest-message/${guildId}`)
+        const data = await response.json()
+        setContractAddress(data.ContractIds)
       }
 
       fetchContractAddress()
     }
   }, [guildId])
+  console.log('fetched contract address:', contractAddress)
 
   useEffect(() => {
     if (contractAddress) {
-      getDeployments(contractAddress)
-        .then((deployments) => {
-          setDeployments(deployments)
-          setIsLoading(false) // Set loading to false after deployments are fetched
-        })
-        .catch((error) => {
-          console.error('Failed to get deployments:', error)
-        })
+      getDeployments(contractAddress).then((deps) => {
+        setDeployments(deps)
+        setIsLoading(false) // Set loading to false when deployments are set
+      })
     }
-  }, [contractAddress])
+  }, [contractAddress]) // This runs whenever contractAddress changes
 
   if (isLoading) {
     return <div>Loading...</div> // Render loading state
