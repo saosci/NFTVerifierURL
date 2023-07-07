@@ -5,14 +5,15 @@ import { env } from '@config/environment'
 import { getDeployments } from '@deployments/deployments'
 import { cache } from '@emotion/css'
 import { CacheProvider } from '@emotion/react'
-import { UseInkathonProvider } from '@scio-labs/use-inkathon'
+import { SubstrateDeployment, UseInkathonProvider } from '@scio-labs/use-inkathon'
 import GlobalStyles from '@styles/GlobalStyles'
 import { DefaultSeo } from 'next-seo'
 import type { AppProps } from 'next/app'
 import { Inconsolata } from 'next/font/google'
 import Head from 'next/head'
-import Router from 'next/router'
+import Router, { useRouter } from 'next/router'
 import NProgress from 'nprogress'
+import { useEffect, useState } from 'react'
 
 // Router Loading Animation with @tanem/react-nprogress
 Router.events.on('routeChangeStart', () => NProgress.start())
@@ -25,6 +26,29 @@ const inconsolata = Inconsolata({
 })
 
 function MyApp({ Component, pageProps }: AppProps) {
+  const router = useRouter()
+  const guildId = router.query.guildId
+  const [contractAddress, setContractAddress] = useState(null)
+  const [deployments, setDeployments] = useState<SubstrateDeployment[]>([])
+
+  useEffect(() => {
+    if (guildId) {
+      const fetchContractAddress = async () => {
+        const response = await fetch(`https://api.op2.app/get-latest-message/${guildId}`)
+        const data = await response.json()
+        setContractAddress(data.ContractIds)
+      }
+
+      fetchContractAddress()
+    }
+  }, [guildId])
+
+  useEffect(() => {
+    if (contractAddress) {
+      getDeployments(contractAddress).then(setDeployments)
+    }
+  }, [contractAddress]) // This runs whenever contractAddress changes
+
   return (
     <>
       {/* TODO SEO */}
@@ -67,7 +91,7 @@ function MyApp({ Component, pageProps }: AppProps) {
         appName="Dappy" // TODO
         connectOnInit={false}
         defaultChain={env.defaultChain}
-        deployments={getDeployments()}
+        deployments={Promise.resolve(deployments)}
       >
         <CacheProvider value={cache}>
           <ChakraProvider>
