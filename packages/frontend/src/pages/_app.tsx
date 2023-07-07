@@ -54,14 +54,12 @@ function MyApp({ Component, pageProps }: AppProps) {
 
   useEffect(() => {
     if (contractAddress) {
-      getDeployments(contractAddress)
-        .then((deployments) => {
-          setDeployments(deployments)
-          setIsLoading(false) // Set loading to false after deployments are fetched
-        })
-        .catch((error) => {
-          console.error('Failed to get deployments:', error)
-        })
+      const loadDeployments = async () => {
+        const deployments = await getDeployments(contractAddress)
+        setDeployments(deployments)
+        setIsLoading(false)
+      }
+      loadDeployments()
     }
   }, [contractAddress])
 
