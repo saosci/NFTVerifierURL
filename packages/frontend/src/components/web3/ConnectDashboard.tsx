@@ -139,6 +139,7 @@ export const ConnectDashboard: FC<ConnectDashboardProps> = ({ adminWalletAddress
     message3: string
     roleId: string
     ContractIds: string
+    [key: string]: string
   }
 
   const {
@@ -172,11 +173,13 @@ export const ConnectDashboard: FC<ConnectDashboardProps> = ({ adminWalletAddress
 
   const onSubmit = async (data: FormData) => {
     try {
-      // Merge the new data with the existing data
-      const mergedData: { [key: string]: string } = { ...initialValues, ...data }
-
-      // Remove undefined or null values
-      Object.keys(mergedData).forEach((key) => mergedData[key] == null && delete mergedData[key])
+      // Merge the new data with the existing data, but only include fields from `data` that are not empty
+      const mergedData: { [key: string]: string } = { ...initialValues }
+      Object.keys(data).forEach((key) => {
+        if (data[key] !== '') {
+          mergedData[key] = data[key]
+        }
+      })
 
       const response = await fetch('https://api.op2.app/update-message', {
         method: 'POST',
