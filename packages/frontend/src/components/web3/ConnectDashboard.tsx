@@ -351,15 +351,17 @@ export const ConnectDashboard: FC<ConnectDashboardProps> = ({ adminWalletAddress
             </FormControl>
 
             <FormControl color="#F5FEFD" id="roleId" isInvalid={!!errors.roleId} mt={4}>
-              <FormLabel>Role:</FormLabel>
-              <Tooltip
-                label="Choose the role that will be assigned to the users."
-                fontSize="md"
-                placement="right"
-                shouldWrapChildren
-              >
-                <Icon as={IoIosInformationCircleOutline} w={5} h={5} ml={2} mt={-3} />
-              </Tooltip>
+              <Flex justifyContent="space-between" alignItems="center">
+                <FormLabel>Role:</FormLabel>
+                <Tooltip
+                  label="Choose the role that will be assigned to the users."
+                  fontSize="md"
+                  placement="right"
+                  shouldWrapChildren
+                >
+                  <Icon as={IoIosInformationCircleOutline} w={5} h={5} ml={2} mt={-3} />
+                </Tooltip>
+              </Flex>
               <Select
                 {...register('roleId')}
                 value={initialValues.roleId}
