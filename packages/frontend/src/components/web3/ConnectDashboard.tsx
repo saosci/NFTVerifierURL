@@ -16,6 +16,7 @@ import {
   MenuDivider,
   MenuItem,
   MenuList,
+  Select,
   Text,
   Textarea,
   Tooltip,
@@ -146,21 +147,44 @@ export const ConnectDashboard: FC<ConnectDashboardProps> = ({ adminWalletAddress
     formState: { errors },
   } = useForm<FormData>({ defaultValues: initialValues })
 
+  // Getting roles!
+
+  const [roles, setRoles] = useState<Role[]>([])
+
+  useEffect(() => {
+    const fetchRoles = async () => {
+      if (guildId) {
+        const response = await fetch(`https://api.op2.app/roles/${guildId}`)
+        const data = await response.json()
+        setRoles(data.roles)
+      }
+    }
+
+    fetchRoles()
+  }, [guildId])
+
+  interface Role {
+    id: string
+    name: string
+  }
+
   // THIS IS WHERE WE SEND IT TO THE BACKEND
 
   const onSubmit = async (data: FormData) => {
     try {
+      // Merge the new data with the existing data
+      const mergedData: { [key: string]: string } = { ...initialValues, ...data }
+
+      // Remove undefined or null values
+      Object.keys(mergedData).forEach((key) => mergedData[key] == null && delete mergedData[key])
+
       const response = await fetch('https://api.op2.app/update-message', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
         },
         body: JSON.stringify({
-          message1: data.message1,
-          message2: data.message2,
-          message3: data.message3,
-          roleId: data.roleId,
-          ContractIds: data.ContractIds,
+          ...mergedData,
           guildId,
         }),
       })
@@ -327,7 +351,7 @@ export const ConnectDashboard: FC<ConnectDashboardProps> = ({ adminWalletAddress
             </FormControl>
 
             <FormControl color="#F5FEFD" id="roleId" isInvalid={!!errors.roleId} mt={4}>
-              <FormLabel>Role ID:</FormLabel>
+              <FormLabel>Role:</FormLabel>
               <Tooltip
                 label="Choose the role that will be assigned to the users."
                 fontSize="md"
@@ -336,7 +360,7 @@ export const ConnectDashboard: FC<ConnectDashboardProps> = ({ adminWalletAddress
               >
                 <Icon as={IoIosInformationCircleOutline} w={5} h={5} ml={2} mt={-3} />
               </Tooltip>
-              <Input
+              <Select
                 {...register('roleId')}
                 value={initialValues.roleId}
                 onChange={(e) =>
@@ -345,7 +369,13 @@ export const ConnectDashboard: FC<ConnectDashboardProps> = ({ adminWalletAddress
                     roleId: e.target.value,
                   }))
                 }
-              />
+              >
+                {roles.map((role) => (
+                  <option key={role.id} value={role.id}>
+                    {role.name}
+                  </option>
+                ))}
+              </Select>
               <FormErrorMessage>{errors.roleId && 'This field is required'}</FormErrorMessage>
             </FormControl>
 
