@@ -385,15 +385,17 @@ export const ConnectDashboard: FC<ConnectDashboardProps> = ({ adminWalletAddress
             </FormControl>
 
             <FormControl color="#F5FEFD" id="ContractIds" isInvalid={!!errors.ContractIds} mt={4}>
-              <FormLabel>Contract Address:</FormLabel>
-              <Tooltip
-                label="Enter the contract address here."
-                fontSize="md"
-                placement="right"
-                shouldWrapChildren
-              >
-                <Icon as={IoIosInformationCircleOutline} w={5} h={5} ml={2} mt={-3} />
-              </Tooltip>
+              <Flex justifyContent="space-between" alignItems="center">
+                <FormLabel>Contract Address:</FormLabel>
+                <Tooltip
+                  label="Enter the contract address here."
+                  fontSize="md"
+                  placement="right"
+                  shouldWrapChildren
+                >
+                  <Icon as={IoIosInformationCircleOutline} w={5} h={5} ml={2} mt={-3} />
+                </Tooltip>
+              </Flex>
               <Input
                 {...register('ContractIds')}
                 value={initialValues.ContractIds}
