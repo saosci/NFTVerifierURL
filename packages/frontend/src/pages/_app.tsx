@@ -61,12 +61,13 @@ function MyApp({ Component, pageProps }: AppProps) {
         setIsLoading(false)
       }
       loadDeployments()
+    } else {
+      // If the contract address is null, wait for 3 seconds before setting isLoading to false
+      setTimeout(() => {
+        setIsLoading(false)
+      }, 1000)
     }
   }, [contractAddress])
-
-  if (isLoading) {
-    return <div>Loading...</div> // Render loading state
-  }
 
   return (
     <>
