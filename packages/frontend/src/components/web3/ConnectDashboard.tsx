@@ -198,8 +198,14 @@ export const ConnectDashboard: FC<ConnectDashboardProps> = ({ adminWalletAddress
 
       const responseData = await response.json()
       console.log(responseData)
+
+      // Show a success toast
+      toast.success('Form saved successfully!')
     } catch (error) {
       console.error('Error:', error)
+
+      // Show an error toast
+      toast.error('Failed to save form.')
     }
   }
 
@@ -305,7 +311,7 @@ export const ConnectDashboard: FC<ConnectDashboardProps> = ({ adminWalletAddress
               <Flex justifyContent="space-between" alignItems="center">
                 <FormLabel>Verification success message:</FormLabel>
                 <Tooltip
-                  label="This is where you put your verification info"
+                  label="The message that will be displayed if the user owns an NFT."
                   fontSize="md"
                   placement="right"
                   shouldWrapChildren
@@ -331,7 +337,7 @@ export const ConnectDashboard: FC<ConnectDashboardProps> = ({ adminWalletAddress
               <Flex justifyContent="space-between" alignItems="center">
                 <FormLabel>Verification failure message:</FormLabel>
                 <Tooltip
-                  label="This is where you put your verification info"
+                  label="The message that will be displayed if the user does not own an NFT."
                   fontSize="md"
                   placement="right"
                   shouldWrapChildren
