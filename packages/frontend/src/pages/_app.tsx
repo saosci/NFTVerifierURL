@@ -55,7 +55,6 @@ function MyApp({ Component, pageProps }: AppProps) {
 
   useEffect(() => {
     if (contractAddress) {
-      setIsLoading(true)
       const loadDeployments = async () => {
         const deployments = await getDeployments(contractAddress)
         setDeployments(deployments)
@@ -66,13 +65,9 @@ function MyApp({ Component, pageProps }: AppProps) {
       // If the contract address is null, wait for 3 seconds before setting isLoading to false
       setTimeout(() => {
         setIsLoading(false)
-      }, 5000)
+      }, 1000)
     }
   }, [contractAddress])
-
-  if (isLoading) {
-    return <div>Loading...</div> // Render loading state
-  }
 
   return (
     <>
