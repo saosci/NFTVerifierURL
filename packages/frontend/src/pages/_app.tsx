@@ -65,7 +65,7 @@ function MyApp({ Component, pageProps }: AppProps) {
       // If the contract address is null, wait for 3 seconds before setting isLoading to false
       setTimeout(() => {
         setIsLoading(false)
-      }, 1000)
+      }, 2000)
     }
   }, [contractAddress])
 
