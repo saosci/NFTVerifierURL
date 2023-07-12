@@ -30,7 +30,7 @@ function MyApp({ Component, pageProps }: AppProps) {
   const guildId = router.query.guildId
   const [contractAddress, setContractAddress] = useState(null)
   const [deployments, setDeployments] = useState<SubstrateDeployment[]>([])
-  const [isLoading, setIsLoading] = useState(true) // Add loading state
+  const [isLoading, setIsLoading] = useState(false) // Add loading state
 
   useEffect(() => {
     if (guildId) {
@@ -43,18 +43,6 @@ function MyApp({ Component, pageProps }: AppProps) {
           }
           const data = await response.json()
           setContractAddress(data.ContractIds)
-
-          // Call loadDeployments function here
-          if (data.ContractIds) {
-            const deployments = await getDeployments(data.ContractIds)
-            setDeployments(deployments)
-            setIsLoading(false)
-          } else {
-            // If the contract address is null, wait for 3 seconds before setting isLoading to false
-            setTimeout(() => {
-              setIsLoading(false)
-            }, 2000)
-          }
         } catch (error) {
           console.error('Failed to fetch contract address:', error)
         }
@@ -63,8 +51,28 @@ function MyApp({ Component, pageProps }: AppProps) {
       fetchContractAddress()
     }
   }, [guildId])
-
   console.log('fetched contract:', contractAddress)
+
+  useEffect(() => {
+    if (contractAddress) {
+      setIsLoading(true)
+      const loadDeployments = async () => {
+        const deployments = await getDeployments(contractAddress)
+        setDeployments(deployments)
+        setIsLoading(false)
+      }
+      loadDeployments()
+    } else {
+      // If the contract address is null, wait for 3 seconds before setting isLoading to false
+      setTimeout(() => {
+        setIsLoading(false)
+      }, 2000)
+    }
+  }, [contractAddress])
+
+  if (isLoading) {
+    return <div>Loading...</div> // Render loading state
+  }
 
   return (
     <>
