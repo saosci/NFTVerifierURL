@@ -30,7 +30,7 @@ function MyApp({ Component, pageProps }: AppProps) {
   const guildId = router.query.guildId
   const [contractAddress, setContractAddress] = useState(null)
   const [deployments, setDeployments] = useState<SubstrateDeployment[]>([])
-  const [isLoading, setIsLoading] = useState(false) // Add loading state
+  const [isLoading, setIsLoading] = useState(true) // Add loading state
 
   useEffect(() => {
     if (guildId) {
