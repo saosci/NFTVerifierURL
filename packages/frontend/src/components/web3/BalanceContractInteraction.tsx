@@ -15,14 +15,14 @@ export const BalanceContractInteraction: FC = () => {
   const router = useRouter()
   const { userId, platform, guildId, channelId } = router.query
   console.log('userId:', userId) // Log the userId
-  const { api, activeAccount } = useInkathon()
-  const { contract, address: contractAddress } = useRegisteredContract(ContractIds.Greeter)
-  console.log('contract:', contract)
-  console.log('contractAddress:', contractAddress)
   const [balance, setBalance] = useState<number>()
   const [fetchIsLoading, setFetchIsLoading] = useState<boolean>()
   const [tokens, setTokens] = useState<any>()
   const [tokenUri, setTokenUri] = useState<string>()
+  const { api, activeAccount } = useInkathon()
+  const { contract, address: contractAddress } = useRegisteredContract(ContractIds.Greeter)
+  console.log('contract:', contract)
+  console.log('contractAddress:', contractAddress)
 
   // Fetch Balance and Tokens
   const fetchBalanceAndTokens = async () => {
