@@ -69,10 +69,6 @@ function MyApp({ Component, pageProps }: AppProps) {
     }
   }, [contractAddress])
 
-  if (isLoading) {
-    return <div>Loading...</div> // Render loading state
-  }
-
   return (
     <>
       {/* TODO SEO */}
