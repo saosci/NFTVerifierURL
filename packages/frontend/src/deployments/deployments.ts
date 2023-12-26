@@ -12,7 +12,7 @@ export const getDeployments = async (contractAddress: string): Promise<Substrate
       {
         contractId: ContractIds.Greeter,
         networkId: network,
-        abi: await import(`@NFTVerifierURL/packages/contracts/deployments/greeter/metadata.json`),
+        abi: await import(`@inkathon/contracts/deployments/greeter/metadata.json`),
         address: contractAddress,
       },
     ])
