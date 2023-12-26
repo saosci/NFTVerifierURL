@@ -96,6 +96,9 @@ export const ConnectDashboard: FC<ConnectDashboardProps> = ({ adminWalletAddress
     accounts,
     setActiveAccount,
   } = useInkathon()
+  console.log('activeChain', activeChain)
+  console.log('activeAccount', activeAccount)
+  console.log('admin Wallet', adminWalletAddresses)
   const { balanceFormatted } = useBalance(activeAccount?.address)
   const [supportedChains] = useState(
     env.supportedChains.map((networkId) => getSubstrateChain(networkId) as SubstrateChain),
