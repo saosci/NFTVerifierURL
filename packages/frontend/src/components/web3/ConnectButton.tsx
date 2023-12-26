@@ -17,7 +17,6 @@ import { InjectedAccount } from '@polkadot/extension-inject/types'
 import { encodeAddress } from '@polkadot/util-crypto'
 import {
   SubstrateChain,
-  SubstrateWalletPlatform,
   allSubstrateWallets,
   getSubstrateChain,
   isWalletInstalled,
@@ -50,9 +49,7 @@ export const ConnectButton: FC<ConnectButtonProps> = () => {
   const [supportedChains] = useState(
     env.supportedChains.map((networkId) => getSubstrateChain(networkId) as SubstrateChain),
   )
-  const [allWallets] = useState(
-    allSubstrateWallets.filter((w) => w.platforms.includes(SubstrateWalletPlatform.Browser)),
-  )
+  const [allWallets] = useState(allSubstrateWallets)
 
   const isSSR = useIsSSR()
 

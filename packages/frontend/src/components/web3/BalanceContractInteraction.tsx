@@ -16,7 +16,6 @@ export const BalanceContractInteraction: FC = () => {
   const { userId, platform, guildId, channelId } = router.query
   console.log('userId:', userId) // Log the userId
   const { api, activeAccount } = useInkathon()
-  console.log('about to run deployment part')
   const { contract, address: contractAddress } = useRegisteredContract(ContractIds.Greeter)
   console.log('contract:', contract)
   console.log('contractAddress:', contractAddress)
@@ -169,7 +168,7 @@ export const BalanceContractInteraction: FC = () => {
           <FormControl>
             <FormLabel>Fetched Token URI</FormLabel>
             <Input
-              placeholder={fetchIsLoading ? 'Loading…' : tokenUri || 'No token URI'}
+              placeholder={fetchIsLoading ? 'Loadingâ¦' : tokenUri || 'No token URI'}
               disabled={true}
             />
           </FormControl>
@@ -181,7 +180,7 @@ export const BalanceContractInteraction: FC = () => {
         <Card variant="outline" p={4} bgColor="whiteAlpha.100">
           <FormControl>
             <FormLabel>Fetched Tokens</FormLabel>
-            <Input placeholder={fetchIsLoading ? 'Loading…' : tokens?.Ok?.U64} disabled={true} />
+            <Input placeholder={fetchIsLoading ? 'Loadingâ¦' : tokens?.Ok?.U64} disabled={true} />
           </FormControl>
         </Card>
       */}
