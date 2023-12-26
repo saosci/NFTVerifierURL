@@ -54,20 +54,37 @@ function MyApp({ Component, pageProps }: AppProps) {
   console.log('fetched contract:', contractAddress)
 
   useEffect(() => {
+    console.log('useEffect triggered with contractAddress:', contractAddress);
+  
     if (contractAddress) {
+      console.log('Contract address is available, loading deployments...');
+  
       const loadDeployments = async () => {
-        const deployments = await getDeployments(contractAddress)
-        setDeployments(deployments)
-        setIsLoading(false)
-      }
-      loadDeployments()
+        try {
+          console.log('Calling getDeployments with contractAddress:', contractAddress);
+          const deployments = await getDeployments(contractAddress);
+          console.log('Deployments fetched:', deployments);
+  
+          setDeployments(deployments);
+          setIsLoading(false);
+          console.log('Deployments set and isLoading set to false');
+        } catch (error) {
+          console.error('Error fetching deployments:', error);
+          setIsLoading(false); // Consider setting loading to false even in case of error
+        }
+      };
+  
+      loadDeployments();
     } else {
-      // If the contract address is null, wait for 3 seconds before setting isLoading to false
+      console.log('Contract address is not available, setting isLoading to false after 1 second');
+      // If the contract address is null, wait for 1 second before setting isLoading to false
       setTimeout(() => {
-        setIsLoading(false)
-      }, 1000)
+        setIsLoading(false);
+        console.log('isLoading set to false after timeout');
+      }, 1000);
     }
-  }, [contractAddress])
+  }, [contractAddress]);
+  
 
   if (isLoading) {
     return <div>Loading...</div> // Render loading state
