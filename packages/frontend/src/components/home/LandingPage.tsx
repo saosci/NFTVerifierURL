@@ -16,6 +16,10 @@ export const LandingPage: FC = () => {
   const memoire = 'Ever since Mr. MoneyBags disappeared'
   const money = 'the party has not stopped'
 
+  const handleMouseEnter = () => {
+    // Your logic for drawing on the canvas or other interactions
+  }
+
   const styles = {
     border: '0rem solid #9c9c9c',
     borderRadius: '0rem',
@@ -44,7 +48,7 @@ export const LandingPage: FC = () => {
       <div tw="flex flex-col items-center text-center font-mono">
         <h1 tw="font-black text-[2.5rem]">{title}</h1>
       </div>
-      <div tw="flex flex-col items-center text-center font-mono">
+      <div tw="flex flex-col items-center text-center font-mono" onMouseEnter={handleMouseEnter}>
         <Canvas />
         <p tw="mt-4 mb-6 text-gray-400">
           {memoire}
