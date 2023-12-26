@@ -3,6 +3,7 @@ import { ReactSketchCanvas } from 'react-sketch-canvas'
 import 'twin.macro'
 import discordlogo from 'public/icons/discordlogo.svg'
 import telegrambutton from 'public/icons/telegrambutton.svg'
+import twitterbutton from 'public/icons/twitter.svg'
 import Image from 'next/image'
 import tw, { styled } from 'twin.macro'
 import Link from 'next/link'
@@ -15,6 +16,7 @@ export const LandingPage: FC = () => {
   const title = 'Office Party'
   const discord = 'https://discord.gg/HkvPV3gAcy'
   const telegram = 'https://t.me/OfficeParty'
+  const twitter = 'https://twitter.com/OfficePartyNFT'
   const memoire = 'Ever since Mr. MoneyBags disappeared'
   const money = 'the party has not stopped'
 
@@ -59,10 +61,13 @@ export const LandingPage: FC = () => {
           <br></br>
         </p>
         <StyledIconLink href={discord} target="_blank">
-          <Image src={discordlogo} priority height={32} alt="Discord Group" />
+          <Image src={discordlogo} priority height={32} alt="Discord" />
         </StyledIconLink>
         <StyledIconLink href={telegram} target="_blank">
-          <Image src={telegrambutton} priority height={32} alt="Telegram Group" />
+          <Image src={telegrambutton} priority height={32} alt="Telegram" />
+        </StyledIconLink>
+        <StyledIconLink href={twitter} target="_blank">
+          <Image src={twitterbutton} priority height={32} alt="X" />
         </StyledIconLink>
         Join the party
       </div>
