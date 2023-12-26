@@ -2,6 +2,7 @@ import { FC } from 'react'
 import { ReactSketchCanvas } from 'react-sketch-canvas'
 import 'twin.macro'
 import discordlogo from 'public/icons/discordlogo.svg'
+import telegrambutton from 'public/icons/telegrambutton.svg'
 import Image from 'next/image'
 import tw, { styled } from 'twin.macro'
 import Link from 'next/link'
@@ -13,6 +14,7 @@ const StyledIconLink = styled(Link)(() => [
 export const LandingPage: FC = () => {
   const title = 'Office Party'
   const discord = 'https://discord.gg/HkvPV3gAcy'
+  const telegram = 'https://t.me/OfficeParty'
   const memoire = 'Ever since Mr. MoneyBags disappeared'
   const money = 'the party has not stopped'
 
@@ -57,7 +59,10 @@ export const LandingPage: FC = () => {
           <br></br>
         </p>
         <StyledIconLink href={discord} target="_blank">
-          <Image src={discordlogo} priority height={32} alt="Telegram Group" />
+          <Image src={discordlogo} priority height={32} alt="Discord Group" />
+        </StyledIconLink>
+        <StyledIconLink href={telegram} target="_blank">
+          <Image src={telegrambutton} priority height={32} alt="Telegram Group" />
         </StyledIconLink>
         Join the party
       </div>
