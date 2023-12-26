@@ -1,11 +1,15 @@
 import { env } from '@config/environment'
 import { SubstrateDeployment } from '@scio-labs/use-inkathon'
 
+console.log('about to export enum contractIds')
 export enum ContractIds {
   Greeter = 'launchpad_psp34_nft_standard',
 }
+console.log('finished with export enum contractIds')
 
+console.log('about to export getDeployments')
 export const getDeployments = async (contractAddress: string): Promise<SubstrateDeployment[]> => {
+  console.log('inside getDeployments')
   // Check if contractAddress is valid
   if (!contractAddress) {
     console.error('Invalid contract address provided to getDeployments');
