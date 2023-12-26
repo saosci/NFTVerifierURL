@@ -211,7 +211,7 @@ export interface AccountNameProps {
 export const AccountName: FC<AccountNameProps> = ({ account, ...rest }) => {
   const { activeChain } = useInkathon()
   const { primaryDomain } = useResolveAddressToDomain(
-    activeChain?.network === SupportedChainId.AlephZeroTestnet ? account?.address : undefined,
+    activeChain?.network === SupportedChainId.AlephZero ? account?.address : undefined,
     {
       chainId: activeChain?.network,
     },
