@@ -60,17 +60,22 @@ export const LandingPage: FC = () => {
           {money}
           <br></br>
         </p>
-        <StyledIconLink href={discord} target="_blank">
-          <Image src={discordlogo} priority height={32} alt="Discord" />
-        </StyledIconLink>
-        <StyledIconLink href={telegram} target="_blank">
-          <Image src={telegrambutton} priority height={32} alt="Telegram" />
-        </StyledIconLink>
-        <StyledIconLink href={twitter} target="_blank">
-          <Image src={twitterbutton} priority height={32} alt="X" />
-        </StyledIconLink>
-        Join the party
+  
+        {/* Container for the icon links */}
+        <div tw="flex justify-center space-x-4"> {/* Flex container with space between items */}
+          <StyledIconLink href={discord} target="_blank">
+            <Image src={discordlogo} priority height={32} alt="Discord" />
+          </StyledIconLink>
+          <StyledIconLink href={telegram} target="_blank">
+            <Image src={telegrambutton} priority height={32} alt="Telegram" />
+          </StyledIconLink>
+          <StyledIconLink href={twitter} target="_blank">
+            <Image src={twitterbutton} priority height={32} alt="X" />
+          </StyledIconLink>
+        </div>
+        <div>Join the party</div>
       </div>
     </>
   )
+  
 }
