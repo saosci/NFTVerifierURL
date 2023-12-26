@@ -62,10 +62,11 @@ function MyApp({ Component, pageProps }: AppProps) {
       const loadDeployments = async () => {
         try {
           console.log('Calling getDeployments with contractAddress:', contractAddress);
-          const deployments = await getDeployments(contractAddress);
-          console.log('Deployments fetched:', deployments);
+          // Fetching deployments and setting them to state
+          const deploymentsResult = await getDeployments(contractAddress);
+          console.log('Deployments fetched:', deploymentsResult);
   
-          setDeployments(deployments);
+          setDeployments(deploymentsResult); // Setting the fetched deployments to state
           setIsLoading(false);
           console.log('Deployments set and isLoading set to false');
         } catch (error) {
@@ -77,13 +78,13 @@ function MyApp({ Component, pageProps }: AppProps) {
       loadDeployments();
     } else {
       console.log('Contract address is not available, setting isLoading to false after 1 second');
-      // If the contract address is null, wait for 1 second before setting isLoading to false
       setTimeout(() => {
         setIsLoading(false);
         console.log('isLoading set to false after timeout');
       }, 1000);
     }
   }, [contractAddress]);
+  
   
 
   if (isLoading) {
