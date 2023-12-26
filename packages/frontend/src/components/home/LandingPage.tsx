@@ -1,5 +1,4 @@
-import { FC, useState } from 'react'
-import Confetti from 'react-confetti'
+import { FC } from 'react'
 import { ReactSketchCanvas } from 'react-sketch-canvas'
 import 'twin.macro'
 import discordlogo from 'public/icons/discordlogo.svg'
@@ -16,11 +15,6 @@ export const LandingPage: FC = () => {
   const discord = 'https://discord.gg/HkvPV3gAcy'
   const memoire = 'Ever since Mr. MoneyBags disappeared'
   const money = 'the party has not stopped'
-  const [confetti, setConfetti] = useState(false)
-
-  const handleMouseEnter = () => {
-    setConfetti(true)
-  }
 
   const styles = {
     border: '0rem solid #9c9c9c',
@@ -47,17 +41,10 @@ export const LandingPage: FC = () => {
 
   return (
     <>
-      {confetti && (
-        <Confetti
-          width={window.innerWidth}
-          height={window.innerHeight}
-          style={{ position: 'fixed' }}
-        />
-      )}
       <div tw="flex flex-col items-center text-center font-mono">
         <h1 tw="font-black text-[2.5rem]">{title}</h1>
       </div>
-      <div tw="flex flex-col items-center text-center font-mono" onMouseEnter={handleMouseEnter}>
+      <div tw="flex flex-col items-center text-center font-mono">
         <Canvas />
         <p tw="mt-4 mb-6 text-gray-400">
           {memoire}
