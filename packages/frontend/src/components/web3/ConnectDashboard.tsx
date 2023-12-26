@@ -58,6 +58,7 @@ export const AccountName: FC<AccountNameProps> = ({ account, ...rest }) => {
       chainId: activeChain?.network,
     },
   )
+  console.log('active chain', activeChain)
 
   return (
     <Text
