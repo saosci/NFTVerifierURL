@@ -68,6 +68,7 @@ function MyApp({ Component, pageProps }: AppProps) {
       }, 1000)
     }
   }, [contractAddress])
+  console.log('contract address from loading website:', contractAddress)
 
   return (
     <>
