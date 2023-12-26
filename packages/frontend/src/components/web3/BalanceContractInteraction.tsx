@@ -1,5 +1,3 @@
-//addint useless code
-
 import { Card, FormControl, FormLabel, Input } from '@chakra-ui/react'
 import { ContractIds } from '@deployments/deployments'
 import {
@@ -18,6 +16,7 @@ export const BalanceContractInteraction: FC = () => {
   const { userId, platform, guildId, channelId } = router.query
   console.log('userId:', userId) // Log the userId
   const { api, activeAccount } = useInkathon()
+  console.log('about to run deployment part')
   const { contract, address: contractAddress } = useRegisteredContract(ContractIds.Greeter)
   console.log('contract:', contract)
   console.log('contractAddress:', contractAddress)
