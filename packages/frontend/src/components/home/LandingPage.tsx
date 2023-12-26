@@ -61,8 +61,7 @@ export const LandingPage: FC = () => {
           <br></br>
         </p>
   
-        {/* Container for the icon links */}
-        <div tw="flex justify-center space-x-4"> {/* Flex container with space between items */}
+        <div tw="flex justify-center space-x-4">
           <StyledIconLink href={discord} target="_blank">
             <Image src={discordlogo} priority height={32} alt="Discord" />
           </StyledIconLink>
