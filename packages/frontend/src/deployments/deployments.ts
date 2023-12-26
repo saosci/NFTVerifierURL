@@ -11,7 +11,7 @@ export const getDeployments = async (contractAddress: string): Promise<Substrate
 
   for (const networkId of networks) {
     // Assuming you want to use the same contract address for each network
-    const abi = await import(`@inkathon/contracts/deployments/${ContractIds.Greeter}/metadata.json`);
+    const abi = await import(`../../packages/contracts/deployments/${ContractIds.Greeter}/metadata.json`);
 
     deployments.push({ 
       contractId: ContractIds.Greeter, 
