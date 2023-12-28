@@ -118,7 +118,7 @@ export const LandingPage: FC = () => {
         </div>
         <div>Join the party</div>
       </div>
-      {isRewardEligible && <div>Congratulations! You've earned a reward!</div>}
+      {isRewardEligible && <div>Congratulations! You&apos;ve earned a reward!</div>}
     </>
   );
 };
