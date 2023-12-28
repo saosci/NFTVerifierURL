@@ -9,6 +9,7 @@ import { BalanceContractInteraction } from '@components/web3/BalanceContractInte
 import { ConnectButton } from '@components/web3/ConnectButton'
 import { images } from 'next.config'
 import { HomeTopBar } from '@components/home/HomeTopBar'
+import Image from 'next/image';
 import partyHatImage from 'public/images/Party_Hat.png'
 
 const HomePage: NextPage = () => {
