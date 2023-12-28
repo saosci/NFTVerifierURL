@@ -1,4 +1,4 @@
-import { FC } from 'react'
+import { FC, useState, useRef } from 'react'
 import { ReactSketchCanvas } from 'react-sketch-canvas'
 import 'twin.macro'
 import discordlogo from 'public/icons/discordlogo.svg'
