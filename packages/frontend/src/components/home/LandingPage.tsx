@@ -30,13 +30,18 @@ export const LandingPage: FC = () => {
   }
 
   const Canvas = () => {
+    // Define responsive styles
+    const responsiveStyles = {
+      ...styles, // your existing styles
+      width: '80vw', // 80% of the viewport width
+      height: '80vw', // you can adjust the height as needed
+      maxWidth: '512px', // maximum size
+      maxHeight: '512px', // maximum size
+    };
+  
     return (
       <ReactSketchCanvas
-        style={styles}
-        width="80vw" // 80% of the viewport width
-        height="80vw" // you can adjust the height as needed
-        maxWidth="512px"
-        maxHeight="512px"
+        style={responsiveStyles}
         backgroundImage="none"
         svgStyle={{
           backgroundImage: "url('https://i.imgur.com/iOKqtrq.png')",
