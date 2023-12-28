@@ -39,8 +39,8 @@ export const LandingPage: FC = () => {
     let crossesTop = false;
     let crossesBottom = false;
   
-    paths.forEach(path => {
-      path.forEach(point => {
+    paths.forEach((path: { x: number; y: number }[]) => {
+      path.forEach((point: { x: number; y: number }) => {
         if (point.x < targetArea.x) crossesLeft = true;
         if (point.x > targetArea.x + targetArea.width) crossesRight = true;
         if (point.y < targetArea.y) crossesTop = true;
@@ -50,6 +50,7 @@ export const LandingPage: FC = () => {
   
     return crossesLeft && crossesRight && crossesTop && crossesBottom;
   };
+  
 
   const handleStrokeEnd = async () => {
     if (canvasRef.current) {
