@@ -23,7 +23,7 @@ const HomePage: NextPage = () => {
     <HomeTopBar tw="mb-10 px-5"/>
     <CenterBody>
         {/* Title */}
-        <LandingPage tw="sm:mt-5 md:mt-10 lg:mt-20 mb-10 px-5" />
+        <LandingPage tw="sm:mt-20 md:mt-40 lg:mt-80 mb-10 px-5" />
 
         <div tw="mt-10 flex w-full flex-wrap items-start justify-center gap-4"></div>
       </CenterBody>
