@@ -1,5 +1,5 @@
-import { FC, useState, useRef } from 'react'
-import { ReactSketchCanvas, ReactSketchCanvasProps } from 'react-sketch-canvas';
+import { FC } from 'react'
+import { ReactSketchCanvas } from 'react-sketch-canvas'
 import 'twin.macro'
 import discordlogo from 'public/icons/discordlogo.svg'
 import telegrambutton from 'public/icons/telegrambutton.svg'
@@ -19,67 +19,28 @@ export const LandingPage: FC = () => {
   const twitter = 'https://twitter.com/OfficePartyNFT'
   const memoire = 'Ever since Mr. MoneyBags disappeared'
   const money = 'the party has not stopped'
-  const canvasRef = useRef<HTMLCanvasElement>(null);
-  const [isRewardEligible, setIsRewardEligible] = useState(false);
 
   const handleMouseEnter = () => {
     // Your logic for drawing on the canvas or other interactions
   }
 
-  const targetArea = {
-    x: 600, // Adjust these values based on the canvas size
-    y: 775,
-    width: 20,
-    height: 20
-  };
-
-  const checkEncirclement = (paths: any[], targetArea: { x: number; y: number; width: number; height: number }) => {
-    let crossesLeft = false;
-    let crossesRight = false;
-    let crossesTop = false;
-    let crossesBottom = false;
-  
-    paths.forEach((path: { x: number; y: number }[]) => {
-      path.forEach((point: { x: number; y: number }) => {
-        if (point.x < targetArea.x) crossesLeft = true;
-        if (point.x > targetArea.x + targetArea.width) crossesRight = true;
-        if (point.y < targetArea.y) crossesTop = true;
-        if (point.y > targetArea.y + targetArea.height) crossesBottom = true;
-      });
-    });
-  
-    return crossesLeft && crossesRight && crossesTop && crossesBottom;
-  };
-  
-
-  const handleStrokeEnd = async () => {
-    if (canvasRef.current) {
-      const paths = await canvasRef.current.getPaths();
-      const userCircledTargetArea = checkEncirclement(paths, targetArea);
-      
-      if (userCircledTargetArea) {
-        setIsRewardEligible(true);
-      }
-    }
-  };
-
   const styles = {
     border: '0rem solid #9c9c9c',
     borderRadius: '0rem',
-  };
+  }
 
   const Canvas = () => {
+    // Define responsive styles
     const responsiveStyles = {
-      ...styles,
-      width: '80vw',
-      height: '80vw',
-      maxWidth: '512px',
-      maxHeight: '512px',
+      ...styles, // your existing styles
+      width: '80vw', // 80% of the viewport width
+      height: '80vw', // you can adjust the height as needed
+      maxWidth: '512px', // maximum size
+      maxHeight: '512px', // maximum size
     };
-
+  
     return (
       <ReactSketchCanvas
-        ref={canvasRef}
         style={responsiveStyles}
         backgroundImage="none"
         svgStyle={{
@@ -89,23 +50,25 @@ export const LandingPage: FC = () => {
         }}
         strokeWidth={4}
         strokeColor="red"
-        onStrokeEnd={handleStrokeEnd}
       />
-    );
-  };
+    )
+  }
+  
 
   return (
     <>
       <div tw="flex flex-col items-center text-center font-mono">
-        <h1 tw="font-black text-[2.5rem]">Office Party</h1>
+        <h1 tw="font-black text-[2.5rem]">{title}</h1>
       </div>
-      <div tw="flex flex-col items-center text-center font-mono">
+      <div tw="flex flex-col items-center text-center font-mono" onMouseEnter={handleMouseEnter}>
         <Canvas />
         <p tw="mt-4 mb-6 text-gray-400">
-          Ever since Mr. MoneyBags disappeared
-          <br />
-          the party has not stopped
+          {memoire}
+          <br></br>
+          {money}
+          <br></br>
         </p>
+  
         <div tw="flex justify-center space-x-4">
           <StyledIconLink href={discord} target="_blank">
             <Image src={discordlogo} priority height={32} alt="Discord" />
@@ -114,14 +77,12 @@ export const LandingPage: FC = () => {
             <Image src={telegrambutton} priority height={32} alt="Telegram" />
           </StyledIconLink>
           <StyledIconLink href={twitter} target="_blank">
-            <Image src={twitterbutton} priority height={32} alt="Twitter" />
+            <Image src={twitterbutton} priority height={32} alt="X" />
           </StyledIconLink>
         </div>
         <div>Join the party</div>
       </div>
-      {isRewardEligible && <div>Congratulations! You&apos;ve earned a reward!</div>}
     </>
-  );
-};
-
-export default LandingPage;
+  )
+  
+}
