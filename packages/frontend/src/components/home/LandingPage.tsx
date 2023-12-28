@@ -33,12 +33,12 @@ export const LandingPage: FC = () => {
     height: 20
   };
 
-  const checkEncirclement = (paths, targetArea) => {
+  const checkEncirclement = (paths: any[], targetArea: { x: number; y: number; width: number; height: number }) => {
     let crossesLeft = false;
     let crossesRight = false;
     let crossesTop = false;
     let crossesBottom = false;
-
+  
     paths.forEach(path => {
       path.forEach(point => {
         if (point.x < targetArea.x) crossesLeft = true;
@@ -47,7 +47,7 @@ export const LandingPage: FC = () => {
         if (point.y > targetArea.y + targetArea.height) crossesBottom = true;
       });
     });
-
+  
     return crossesLeft && crossesRight && crossesTop && crossesBottom;
   };
 
