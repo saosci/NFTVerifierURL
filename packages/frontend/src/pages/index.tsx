@@ -21,7 +21,7 @@ const HomePage: NextPage = () => {
   return (
     <>
     <HomeTopBar />
-      <CenterBody tw="mt-20 mb-10 px-5">
+      <CenterBody tw="mt-40 mb-10 px-5">
         {/* Title */}
         <LandingPage />
 
