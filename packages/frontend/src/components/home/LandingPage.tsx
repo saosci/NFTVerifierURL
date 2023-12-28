@@ -19,7 +19,7 @@ export const LandingPage: FC = () => {
   const twitter = 'https://twitter.com/OfficePartyNFT'
   const memoire = 'Ever since Mr. MoneyBags disappeared'
   const money = 'the party has not stopped'
-  const canvasRef = useRef<ReactSketchCanvasProps>(null);
+  const canvasRef = useRef<HTMLCanvasElement>(null);
   const [isRewardEligible, setIsRewardEligible] = useState(false);
 
   const handleMouseEnter = () => {
