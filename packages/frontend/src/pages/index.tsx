@@ -21,9 +21,9 @@ const HomePage: NextPage = () => {
   return (
     <>
     <HomeTopBar tw="mb-10 px-5"/>
-    <CenterBody tw="sm:mt-5 md:mt-10 lg:mt-20 mb-10 px-5">
+    <CenterBody>
         {/* Title */}
-        <LandingPage />
+        <LandingPage tw="sm:mt-5 md:mt-10 lg:mt-20 mb-10 px-5" />
 
         <div tw="mt-10 flex w-full flex-wrap items-start justify-center gap-4"></div>
       </CenterBody>
