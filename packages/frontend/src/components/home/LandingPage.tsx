@@ -1,6 +1,5 @@
 import { FC, useState, useRef } from 'react'
 import { ReactSketchCanvas, ReactSketchCanvasProps } from 'react-sketch-canvas';
-
 import 'twin.macro'
 import discordlogo from 'public/icons/discordlogo.svg'
 import telegrambutton from 'public/icons/telegrambutton.svg'
@@ -20,7 +19,7 @@ export const LandingPage: FC = () => {
   const twitter = 'https://twitter.com/OfficePartyNFT'
   const memoire = 'Ever since Mr. MoneyBags disappeared'
   const money = 'the party has not stopped'
-  const canvasRef = useRef<ReactSketchCanvas>(null);
+  const canvasRef = useRef<ReactSketchCanvasProps>(null);
   const [isRewardEligible, setIsRewardEligible] = useState(false);
 
   const handleMouseEnter = () => {
