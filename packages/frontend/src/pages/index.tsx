@@ -8,6 +8,7 @@ import 'twin.macro'
 import { BalanceContractInteraction } from '@components/web3/BalanceContractInteraction'
 import { ConnectButton } from '@components/web3/ConnectButton'
 import { images } from 'next.config'
+import { HomeTopBar } from '@components/home/HomeTopBar'
 
 const HomePage: NextPage = () => {
   // Display `useInkathon` error messages (optional)
@@ -19,6 +20,7 @@ const HomePage: NextPage = () => {
 
   return (
     <>
+    <HomeTopBar />
       <CenterBody tw="mt-20 mb-10 px-5">
         {/* Title */}
         <LandingPage />
