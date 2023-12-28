@@ -20,7 +20,7 @@ const HomePage: NextPage = () => {
 
   return (
     <>
-    <HomeTopBar/>
+    <HomeTopBar style={{ paddingBottom: '2.5rem' }}/>
     <CenterBody tw="sm:mt-5 md:mt-10 lg:mt-20 mb-10 px-5">
         {/* Title */}
         <LandingPage />
