@@ -33,8 +33,10 @@ export const LandingPage: FC = () => {
     return (
       <ReactSketchCanvas
         style={styles}
-        width="512px"
-        height="512px"
+        width="80vw" // 80% of the viewport width
+        height="80vw" // you can adjust the height as needed
+        maxWidth="512px"
+        maxHeight="512px"
         backgroundImage="none"
         svgStyle={{
           backgroundImage: "url('https://i.imgur.com/iOKqtrq.png')",
