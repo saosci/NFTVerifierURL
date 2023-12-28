@@ -29,7 +29,7 @@ const HomePage: NextPage = () => {
 
         <div tw="mt-10 flex w-full flex-wrap items-start justify-center gap-4"></div>
       </CenterBody>
-      <img src={partyHatImage} alt="Party Hat" />
+      <img src="/images/Party_Hat.png" alt="Party Hat" />
     </>
   )
 }
