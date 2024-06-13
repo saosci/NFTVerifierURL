@@ -1,5 +1,4 @@
 import { FC } from 'react'
-import { ReactSketchCanvas } from 'react-sketch-canvas'
 import 'twin.macro'
 import discordlogo from 'public/icons/discordlogo.svg'
 import telegrambutton from 'public/icons/telegrambutton.svg'
@@ -24,51 +23,26 @@ export const LandingPage: FC = () => {
     // Your logic for drawing on the canvas or other interactions
   }
 
-  const styles = {
-    border: '0rem solid #9c9c9c',
-    borderRadius: '0rem',
-  }
-
-  const Canvas = () => {
-    // Define responsive styles
-    const responsiveStyles = {
-      ...styles, // your existing styles
-      width: '80vw', // 80% of the viewport width
-      height: '80vw', // you can adjust the height as needed
-      maxWidth: '512px', // maximum size
-      maxHeight: '512px', // maximum size
-    };
-  
-    return (
-      <ReactSketchCanvas
-        style={responsiveStyles}
-        backgroundImage="none"
-        svgStyle={{
-          backgroundImage: "url('https://i.imgur.com/iOKqtrq.png')",
-          backgroundSize: 'cover',
-          backgroundPosition: 'center',
-        }}
-        strokeWidth={4}
-        strokeColor="red"
-      />
-    )
-  }
-  
-
   return (
     <>
       <div tw="flex flex-col items-center text-center font-mono">
         <h1 tw="font-black text-[2.5rem]">{title}</h1>
+        <Image
+          src="public/images/IOU.png" // Update with your actual image URL
+          alt="Background"
+          width={512}
+          height={512}
+          style={{ maxWidth: '80vw', maxHeight: '80vw' }}
+        />
       </div>
       <div tw="flex flex-col items-center text-center font-mono" onMouseEnter={handleMouseEnter}>
-        <Canvas />
         <p tw="mt-4 mb-6 text-gray-400">
           {memoire}
           <br></br>
           {money}
           <br></br>
         </p>
-  
+
         <div tw="flex justify-center space-x-4">
           <StyledIconLink href={discord} target="_blank">
             <Image src={discordlogo} priority height={32} alt="Discord" />
@@ -77,12 +51,11 @@ export const LandingPage: FC = () => {
             <Image src={telegrambutton} priority height={32} alt="Telegram" />
           </StyledIconLink>
           <StyledIconLink href={twitter} target="_blank">
-            <Image src={twitterbutton} priority height={32} alt="X" />
+            <Image src={twitterbutton} priority height={32} alt="Twitter" />
           </StyledIconLink>
         </div>
         <div>Join the party</div>
       </div>
     </>
   )
-  
 }
