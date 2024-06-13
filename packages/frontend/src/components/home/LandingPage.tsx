@@ -3,6 +3,7 @@ import 'twin.macro'
 import discordlogo from 'public/icons/discordlogo.svg'
 import telegrambutton from 'public/icons/telegrambutton.svg'
 import twitterbutton from 'public/icons/twitterbutton.svg'
+import IOU from 'public/images/IOU.png'
 import Image from 'next/image'
 import tw, { styled } from 'twin.macro'
 import Link from 'next/link'
@@ -28,8 +29,8 @@ export const LandingPage: FC = () => {
       <div tw="flex flex-col items-center text-center font-mono">
         <h1 tw="font-black text-[2.5rem]">{title}</h1>
         <Image
-          src="public/images/IOU.png" // Update with your actual image URL
-          alt="Background"
+          src={IOU}
+          alt="IOU Image"
           width={512}
           height={512}
           style={{ maxWidth: '80vw', maxHeight: '80vw' }}
