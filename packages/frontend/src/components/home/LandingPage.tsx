@@ -15,10 +15,10 @@ const StyledIconLink = styled(Link)(() => [
 export const LandingPage: FC = () => {
   const title = 'Office Party'
   const discord = 'https://discord.gg/HkvPV3gAcy'
-  const telegram = 'https://t.me/OfficeParty'
-  const twitter = 'https://twitter.com/OfficePartyNFT'
-  const memoire = 'Ever since Mr. MoneyBags disappeared'
-  const money = 'the party has not stopped'
+  const telegram = 'https://t.me/IOUmeme'
+  const twitter = 'https://twitter.com/IOUmeme'
+  const memoire = 'Mr. MoneyBags is finally back,'
+  const money = 'the party has just started'
 
   const handleMouseEnter = () => {
     // Your logic for drawing on the canvas or other interactions
